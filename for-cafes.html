@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For Cafés — CafeConnects</title>
+  <meta name="description" content="Partner with CafeConnects to increase repeat footfall, build community, and grow your café business with data-driven insights." />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .page-hero { background:var(--espresso); padding:160px 0 100px; position:relative; overflow:hidden; }
+    .page-hero::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 80% 70% at 80% 50%, rgba(247,216,216,0.12) 0%, transparent 60%); }
+    .page-hero-dots { position:absolute; inset:0; background-image:radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px); background-size:28px 28px; }
+    .page-hero-inner { position:relative; z-index:2; max-width:720px; }
+    .page-hero h1 { font-size:clamp(40px,5.5vw,68px); font-weight:800; letter-spacing:-0.04em; line-height:1.05; color:var(--white); margin-bottom:20px; }
+    .page-hero p { font-size:19px; color:rgba(255,255,255,0.65); line-height:1.65; }
+
+    /* Problems */
+    .problems-section { background:var(--cream); }
+    .problems-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:24px; }
+    .problem-card { background:var(--white); border-radius:var(--radius-lg); padding:32px; border:1px solid rgba(215,204,200,0.5); border-left:4px solid var(--coffee); }
+    .problem-icon { font-size:32px; margin-bottom:12px; }
+    .problem-card h3 { font-size:18px; margin-bottom:8px; color:var(--espresso); }
+    .problem-card p  { font-size:14px; color:var(--text-muted); line-height:1.6; }
+
+    /* How We Help */
+    .how-help-section { background:var(--white); }
+    .help-split { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+    .help-items { display:flex; flex-direction:column; gap:24px; }
+    .help-item { display:flex; gap:16px; padding:20px; background:var(--cream); border-radius:var(--radius-md); border:1px solid var(--rose); transition:all 0.3s var(--ease-smooth); }
+    .help-item:hover { box-shadow:var(--shadow-md); transform:translateX(4px); }
+    .help-icon { width:48px; height:48px; border-radius:12px; background:var(--grad-warm); display:flex; align-items:center; justify-content:center; font-size:20px; flex-shrink:0; }
+    .help-text h4 { font-size:16px; font-weight:700; color:var(--espresso); margin-bottom:4px; }
+    .help-text p  { font-size:13px; color:var(--text-muted); line-height:1.5; }
+
+    /* Dashboard Mockup */
+    .dashboard { background:var(--white); border-radius:var(--radius-xl); box-shadow:var(--shadow-xl); overflow:hidden; border:1px solid rgba(215,204,200,0.5); }
+    .dash-header { background:var(--espresso); padding:20px 24px; display:flex; align-items:center; justify-content:space-between; }
+    .dash-header h3 { color:var(--white); font-size:15px; font-weight:700; font-family:var(--font-display); }
+    .dash-header-right { display:flex; gap:8px; }
+    .dash-dot { width:10px; height:10px; border-radius:50%; }
+    .dash-body { padding:24px; }
+    .dash-metrics { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:24px; }
+    .dash-metric { background:var(--cream); border-radius:var(--radius-md); padding:16px; border:1px solid var(--rose); text-align:center; }
+    .dash-metric-num { font-family:var(--font-display); font-size:28px; font-weight:800; color:var(--espresso); letter-spacing:-0.03em; }
+    .dash-metric-label { font-size:11px; color:var(--text-muted); margin-top:4px; }
+    .dash-chart { background:var(--cream); border-radius:var(--radius-md); padding:16px; margin-bottom:16px; }
+    .dash-chart h4 { font-size:12px; font-weight:700; color:var(--espresso); margin-bottom:12px; }
+    .chart-bars { display:flex; align-items:flex-end; gap:8px; height:80px; }
+    .chart-bar-wrap { flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; }
+    .chart-bar { width:100%; border-radius:4px 4px 0 0; background:var(--coffee); transition:height 0.3s; }
+    .chart-label { font-size:9px; color:var(--text-muted); }
+    .dash-topics { display:flex; flex-direction:column; gap:8px; }
+    .topic-row { display:flex; align-items:center; gap:8px; }
+    .topic-label { font-size:11px; color:var(--espresso); width:80px; flex-shrink:0; }
+    .topic-bar-wrap { flex:1; height:6px; background:rgba(215,204,200,0.5); border-radius:3px; }
+    .topic-bar { height:100%; border-radius:3px; background:var(--coffee); }
+    .topic-pct { font-size:11px; color:var(--text-muted); width:32px; text-align:right; }
+
+    /* Tiers */
+    .tiers-section { background:var(--cream); }
+    .tier-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+    .tier-card { background:var(--white); border-radius:var(--radius-xl); padding:40px 32px; border:2px solid rgba(215,204,200,0.5); transition:all 0.3s var(--ease-smooth); position:relative; overflow:hidden; }
+    .tier-card:hover { box-shadow:var(--shadow-lg); transform:translateY(-6px); }
+    .tier-card.featured { background:var(--grad-warm); border-color:transparent; }
+    .tier-recommended { position:absolute; top:20px; right:20px; background:rgba(255,255,255,0.2); color:var(--white); font-size:10px; font-weight:700; padding:4px 10px; border-radius:var(--radius-full); letter-spacing:0.06em; text-transform:uppercase; }
+    .tier-icon { font-size:36px; margin-bottom:20px; }
+    .tier-card h3 { font-size:22px; font-weight:800; margin-bottom:4px; font-family:var(--font-display); }
+    .tier-card.featured h3 { color:var(--white); }
+    .tier-price { font-family:var(--font-display); font-size:40px; font-weight:800; color:var(--espresso); letter-spacing:-0.04em; margin:12px 0 4px; }
+    .tier-card.featured .tier-price { color:var(--white); }
+    .tier-price-sub { font-size:13px; color:var(--text-muted); margin-bottom:24px; }
+    .tier-card.featured .tier-price-sub { color:rgba(255,255,255,0.6); }
+    .tier-features { list-style:none; display:flex; flex-direction:column; gap:10px; margin-bottom:28px; }
+    .tier-features li { display:flex; align-items:flex-start; gap:10px; font-size:14px; }
+    .tier-features li span:first-child { font-size:14px; flex-shrink:0; margin-top:1px; }
+    .tier-features .t-text { color:var(--text-secondary); }
+    .tier-card.featured .t-text { color:rgba(255,255,255,0.8); }
+
+    /* ROI */
+    .roi-section { background:var(--white); }
+    .roi-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:32px; }
+    .roi-card { text-align:center; padding:40px 24px; background:var(--cream); border-radius:var(--radius-xl); border:1px solid var(--rose); transition:all 0.3s var(--ease-smooth); }
+    .roi-card:hover { box-shadow:var(--shadow-md); transform:translateY(-4px); }
+    .roi-number { font-family:var(--font-display); font-size:56px; font-weight:800; color:var(--espresso); letter-spacing:-0.04em; line-height:1; margin-bottom:8px; }
+    .roi-label { font-size:15px; font-weight:600; color:var(--coffee); margin-bottom:8px; }
+    .roi-desc { font-size:13px; color:var(--text-muted); line-height:1.6; }
+
+    /* Registration Form */
+    .form-section { background:var(--cream); }
+    .form-card { background:var(--white); border-radius:var(--radius-xl); padding:64px; box-shadow:var(--shadow-lg); border:1px solid rgba(215,204,200,0.5); max-width:760px; margin:0 auto; }
+    .form-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+
+    @media (max-width:1024px) { .help-split{grid-template-columns:1fr;gap:48px} .tier-grid{grid-template-columns:1fr;max-width:440px;margin:0 auto} .roi-grid{grid-template-columns:1fr} .problems-grid{grid-template-columns:1fr} }
+    @media (max-width:768px) { .form-card{padding:32px 24px} .form-grid{grid-template-columns:1fr} .dash-metrics{grid-template-columns:1fr 1fr} }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar" id="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="logo"><div class="logo-icon"></div>CafeConnects</a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="product.html" class="nav-link">Product</a>
+        <a href="for-cafes.html" class="nav-link active">For Cafes</a>
+        <a href="blog.html" class="nav-link">Blog</a>
+        <a href="bangalore-cafes.html" class="nav-link">Bangalore Cafes</a>
+        <div class="nav-dropdown">
+          <a href="#" class="nav-link">More ▾</a>
+          <div class="nav-dropdown-menu">
+            <a href="careers.html" class="nav-dropdown-item">Careers</a>
+            <a href="collaborations.html" class="nav-dropdown-item">Collaborations</a>
+            <a href="safety.html" class="nav-dropdown-item">Safety</a>
+            <a href="privacy-policy.html" class="nav-dropdown-item">Privacy Policy</a>
+            <a href="terms.html" class="nav-dropdown-item">Terms of Service</a>
+            <a href="refund-policy.html" class="nav-dropdown-item">Refund Policy</a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-cta">
+        <a href="#partner" class="btn-nav">Register Your Café</a>
+        <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobile-menu">
+    <button class="mobile-close" id="mobile-close">✕</button>
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="product.html" class="nav-link">Product</a>
+    <a href="for-cafes.html" class="nav-link active">For Cafes</a>
+    <a href="blog.html" class="nav-link">Blog</a>
+    <a href="bangalore-cafes.html" class="nav-link">Bangalore Cafes</a>
+    <a href="#partner" class="btn btn-primary mt-24">Register Your Café</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="page-hero-dots"></div>
+    <div class="bg-blob" style="width:600px;height:600px;background:rgba(247,216,216,0.08);top:-200px;right:-100px;filter:blur(80px)"></div>
+    <div class="container">
+      <div class="page-hero-inner">
+        <div class="eyebrow reveal" style="background:rgba(255,255,255,0.12);color:rgba(255,255,255,0.8)"><span class="eyebrow-dot" style="background:#fff"></span>For Café Partners</div>
+        <h1 class="reveal">Turn Your Café Into a Community Destination.</h1>
+        <p class="reveal reveal-delay-1">CafeConnects helps café owners build loyal communities, increase repeat footfall, and unlock new revenue — all through the power of meaningful human connections.</p>
+        <div class="mt-32 flex gap-16 reveal reveal-delay-2" style="flex-wrap:wrap">
+          <a href="#partner" class="btn btn-white btn-lg">Register Your Café</a>
+          <a href="#tiers" class="btn btn-secondary btn-lg" style="color:rgba(255,255,255,0.8);border-color:rgba(255,255,255,0.3)">View Tiers</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEMS -->
+  <section class="problems-section section">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="eyebrow"><span class="eyebrow-dot"></span>The challenge</div>
+        <h2 class="display-sm">Cafés Face Real Challenges in 2026</h2>
+        <p>The specialty coffee market is booming — but running a profitable café is harder than ever. CafeConnects was built specifically to help you solve these problems.</p>
+      </div>
+      <div class="problems-grid">
+        <div class="problem-card reveal">
+          <div class="problem-icon">📉</div>
+          <h3>Low Repeat Visitor Rate</h3>
+          <p>Most cafés see less than 20% repeat visitors. Customers come once, have a good experience, and don't return for weeks — or ever. There's no mechanism to bring them back.</p>
+        </div>
+        <div class="problem-card reveal reveal-delay-1">
+          <div class="problem-icon">📅</div>
+          <h3>Empty Weekdays</h3>
+          <p>Thursday mornings, Tuesday afternoons — dead. You have the space, the baristas, and the coffee ready, but no foot traffic. Weekends barely make up for it.</p>
+        </div>
+        <div class="problem-card reveal reveal-delay-2">
+          <div class="problem-icon">👥</div>
+          <h3>No Community Around Your Café</h3>
+          <p>Your regulars don't know each other. Every customer sits in isolation. You want to host events but have no community to invite — no engaged audience to market to.</p>
+        </div>
+        <div class="problem-card reveal reveal-delay-3">
+          <div class="problem-icon">📊</div>
+          <h3>Zero Data on Your Customers</h3>
+          <p>You have no idea who your customers are, what they're interested in, or when they're most likely to return. Your business decisions are based entirely on gut feeling.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW WE HELP -->
+  <section class="how-help-section section">
+    <div class="container">
+      <div class="help-split">
+        <div class="reveal">
+          <div class="eyebrow"><span class="eyebrow-dot"></span>Our Solution</div>
+          <h2 class="display-sm" style="margin-bottom:16px">CafeConnects Solves All of This.</h2>
+          <p style="color:var(--text-muted);font-size:16px;margin-bottom:40px;line-height:1.7">By turning your café into a connection hub, we create an intrinsic reason for people to return — to see if that interesting person they poked is back. It's a powerful, organic pull.</p>
+          <div class="help-items">
+            <div class="help-item">
+              <div class="help-icon">🔄</div>
+              <div class="help-text">
+                <h4>Drive Repeat Visits</h4>
+                <p>Cafés partnered with us see 35-45% repeat visitor rates — users come back hoping to reconnect with someone they poked.</p>
+              </div>
+            </div>
+            <div class="help-item">
+              <div class="help-icon">📊</div>
+              <div class="help-text">
+                <h4>Real Analytics Dashboard</h4>
+                <p>See daily active users, match counts, peak hours, interest demographics, and estimated revenue attribution — live.</p>
+              </div>
+            </div>
+            <div class="help-item">
+              <div class="help-icon">🎉</div>
+              <div class="help-text">
+                <h4>Fill Weekdays with Events</h4>
+                <p>Co-branded "Poke Nights" curated for your café's vibe — startup nights, creative meetups, book clubs. We promote. You host.</p>
+              </div>
+            </div>
+            <div class="help-item">
+              <div class="help-icon">📣</div>
+              <div class="help-text">
+                <h4>Free Co-Marketing</h4>
+                <p>We feature partner cafés in our app, newsletter, Instagram, and blog. 5,000+ engaged users see your café every week.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dashboard Mockup -->
+        <div class="reveal reveal-delay-2">
+          <div class="dashboard">
+            <div class="dash-header">
+              <h3>☕ Blue Tokai · Indiranagar Dashboard</h3>
+              <div class="dash-header-right">
+                <div class="dash-dot" style="background:#FF5F56"></div>
+                <div class="dash-dot" style="background:#FFBD2E"></div>
+                <div class="dash-dot" style="background:#27C93F"></div>
+              </div>
+            </div>
+            <div class="dash-body">
+              <div class="dash-metrics">
+                <div class="dash-metric">
+                  <div class="dash-metric-num">47</div>
+                  <div class="dash-metric-label">Matches This Week</div>
+                </div>
+                <div class="dash-metric">
+                  <div class="dash-metric-num">28</div>
+                  <div class="dash-metric-label">Unique Users</div>
+                </div>
+                <div class="dash-metric">
+                  <div class="dash-metric-num">38%</div>
+                  <div class="dash-metric-label">Repeat Rate</div>
+                </div>
+              </div>
+
+              <div class="dash-chart">
+                <h4>📈 Daily Matches — This Week</h4>
+                <div class="chart-bars">
+                  <div class="chart-bar-wrap"><div class="chart-bar" style="height:35%"></div><span class="chart-label">Mon</span></div>
+                  <div class="chart-bar-wrap"><div class="chart-bar" style="height:50%"></div><span class="chart-label">Tue</span></div>
+                  <div class="chart-bar-wrap"><div class="chart-bar" style="height:45%"></div><span class="chart-label">Wed</span></div>
+                  <div class="chart-bar-wrap"><div class="chart-bar" style="height:90%;background:var(--espresso)"></div><span class="chart-label">Thu</span></div>
+                  <div class="chart-bar-wrap"><div class="chart-bar" style="height:60%"></div><span class="chart-label">Fri</span></div>
+                  <div class="chart-bar-wrap"><div class="chart-bar" style="height:100%;background:var(--espresso)"></div><span class="chart-label">Sat</span></div>
+                  <div class="chart-bar-wrap"><div class="chart-bar" style="height:70%"></div><span class="chart-label">Sun</span></div>
+                </div>
+              </div>
+
+              <div class="dash-chart">
+                <h4>🎯 Top Interest Topics This Week</h4>
+                <div class="dash-topics">
+                  <div class="topic-row"><span class="topic-label">Startups</span><div class="topic-bar-wrap"><div class="topic-bar" style="width:78%"></div></div><span class="topic-pct">34%</span></div>
+                  <div class="topic-row"><span class="topic-label">Technology</span><div class="topic-bar-wrap"><div class="topic-bar" style="width:64%"></div></div><span class="topic-pct">28%</span></div>
+                  <div class="topic-row"><span class="topic-label">Travel</span><div class="topic-bar-wrap"><div class="topic-bar" style="width:41%"></div></div><span class="topic-pct">18%</span></div>
+                  <div class="topic-row"><span class="topic-label">Design</span><div class="topic-bar-wrap"><div class="topic-bar" style="width:27%"></div></div><span class="topic-pct">12%</span></div>
+                </div>
+              </div>
+
+              <div style="background:linear-gradient(135deg,#E8F5E9,#F1F8E9);border:1px solid #A5D6A7;border-radius:var(--radius-md);padding:14px;text-align:center;">
+                <p style="font-size:12px;font-weight:700;color:#1B5E20">💰 Estimated Repeat Revenue This Week</p>
+                <p style="font-size:24px;font-weight:800;color:#2E7D32;font-family:var(--font-display);margin-top:4px">₹8,500</p>
+                <p style="font-size:10px;color:#558B2F">10 repeat visitors × 2 visits × ₹425 avg spend</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIERS -->
+  <section class="tiers-section section" id="tiers">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="eyebrow"><span class="eyebrow-dot"></span>Partnership Tiers</div>
+        <h2 class="display-sm">Choose Your Partnership Level</h2>
+        <p>Start free, scale as you see results. Every tier includes listing on the CafeConnects app and QR code for your café.</p>
+      </div>
+      <div class="tier-grid">
+        <div class="tier-card reveal">
+          <div class="tier-icon">🌱</div>
+          <h3>Tier 1 — Starter</h3>
+          <div class="tier-price">Free<span style="font-size:16px;opacity:0.6">/mo</span></div>
+          <p class="tier-price-sub">No commitment, no cost. Ever.</p>
+          <ul class="tier-features">
+            <li><span>✅</span><span class="t-text">Listed on CafeConnects app</span></li>
+            <li><span>✅</span><span class="t-text">QR code poster for your café</span></li>
+            <li><span>✅</span><span class="t-text">Weekly summary email report</span></li>
+            <li><span>✅</span><span class="t-text">Basic match count metrics</span></li>
+          </ul>
+          <a href="#partner" class="btn btn-secondary w-full">Get Started Free</a>
+        </div>
+
+        <div class="tier-card featured reveal reveal-delay-1">
+          <div class="tier-recommended">Most Popular</div>
+          <div class="tier-icon">🚀</div>
+          <h3>Tier 2 — Growth</h3>
+          <div class="tier-price">₹7.5K<span style="font-size:16px;opacity:0.6">/mo</span></div>
+          <p class="tier-price-sub">₹90K/year · Cancel anytime</p>
+          <ul class="tier-features">
+            <li><span>✅</span><span class="t-text">Everything in Starter, plus:</span></li>
+            <li><span>✅</span><span class="t-text">Live analytics dashboard</span></li>
+            <li><span>✅</span><span class="t-text">Monthly detailed report</span></li>
+            <li><span>✅</span><span class="t-text">"Top Café" badge (if qualified)</span></li>
+            <li><span>✅</span><span class="t-text">Co-marketing on social media</span></li>
+            <li><span>✅</span><span class="t-text">User demographic insights</span></li>
+            <li><span>✅</span><span class="t-text">Peak hours & revenue data</span></li>
+          </ul>
+          <a href="#partner" class="btn btn-white w-full">Partner With Us</a>
+        </div>
+
+        <div class="tier-card reveal reveal-delay-2">
+          <div class="tier-icon">⭐</div>
+          <h3>Tier 3 — Premium</h3>
+          <div class="tier-price">₹20K+<span style="font-size:16px;opacity:0.6">/mo</span></div>
+          <p class="tier-price-sub">₹240K+/year · Custom contracts</p>
+          <ul class="tier-features">
+            <li><span>✅</span><span class="t-text">Everything in Growth, plus:</span></li>
+            <li><span>✅</span><span class="t-text">Geo-fence visibility boost (2x)</span></li>
+            <li><span>✅</span><span class="t-text">Co-hosted "Poke Night" events</span></li>
+            <li><span>✅</span><span class="t-text">Custom interest filters</span></li>
+            <li><span>✅</span><span class="t-text">Dedicated support line</span></li>
+            <li><span>✅</span><span class="t-text">Brand partnership features</span></li>
+            <li><span>✅</span><span class="t-text">Priority listing in-app</span></li>
+          </ul>
+          <a href="#partner" class="btn btn-primary w-full">Contact Our Team</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROI -->
+  <section class="roi-section section">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="eyebrow"><span class="eyebrow-dot"></span>Real Results</div>
+        <h2 class="display-sm">What Partner Cafés See</h2>
+        <p>Numbers based on our current Bangalore café network. Results vary by location, tier, and engagement level.</p>
+      </div>
+      <div class="roi-grid">
+        <div class="roi-card reveal">
+          <div class="roi-number" data-count="38" data-suffix="%">0%</div>
+          <div class="roi-label">Repeat Visitor Rate</div>
+          <div class="roi-desc">On average, 38% of matched users return to the same café within 7 days of connecting.</div>
+        </div>
+        <div class="roi-card reveal reveal-delay-1">
+          <div class="roi-number">₹8.5K</div>
+          <div class="roi-label">Weekly Revenue Attribution</div>
+          <div class="roi-desc">Average additional revenue attributed to CafeConnects repeat visits for Tier 2 cafés.</div>
+        </div>
+        <div class="roi-card reveal reveal-delay-2">
+          <div class="roi-number" data-count="150" data-suffix="+">0+</div>
+          <div class="roi-label">Poke Night Attendees</div>
+          <div class="roi-desc">Average footfall for a co-hosted Poke Night at a Tier 3 café, generating ₹8,000+ in direct revenue.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REGISTER FORM -->
+  <section class="form-section section" id="partner">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="eyebrow"><span class="eyebrow-dot"></span>Join the Network</div>
+        <h2 class="display-sm">Register Your Café</h2>
+        <p>Fill out the form below and our team will reach out within 48 hours to get you set up.</p>
+      </div>
+
+      <div class="form-card reveal">
+        <form data-form="cafe-registration" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="f829e437-bf4c-4989-a103-a09cf7e86753" />
+          <input type="hidden" name="subject" value="New Café Registration — CafeConnects" />
+          <input type="hidden" name="from_name" value="CafeConnects Website" />
+          <input type="hidden" name="redirect" value="false" />
+          <input type="checkbox" name="botcheck" style="display:none" />
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Café Name *</label>
+              <input type="text" name="cafe_name" class="form-input" placeholder="e.g. Blue Tokai Coffee Roasters" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Owner / Manager Name *</label>
+              <input type="text" name="owner_name" class="form-input" placeholder="Your full name" required />
+            </div>
+          </div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Email Address *</label>
+              <input type="email" name="email" class="form-input" placeholder="you@yourcafe.com" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Phone Number *</label>
+              <input type="tel" name="phone" class="form-input" placeholder="+91 98765 43210" required />
+            </div>
+          </div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">City *</label>
+              <select name="city" class="form-select form-input" required>
+                <option value="">Select City</option>
+                <option value="Bangalore" selected>Bangalore</option>
+                <option value="Mumbai">Mumbai</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Hyderabad">Hyderabad</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Café Website</label>
+              <input type="url" name="cafe_website" class="form-input" placeholder="https://yourcafe.com (optional)" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Café Address *</label>
+            <input type="text" name="cafe_address" class="form-input" placeholder="Full address including neighbourhood" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Partnership Interest</label>
+            <select name="partnership_tier" class="form-select form-input">
+              <option value="">Select a tier</option>
+              <option value="Tier 1 — Starter (Free)">Tier 1 — Starter (Free)</option>
+              <option value="Tier 2 — Growth (₹7.5K/month)">Tier 2 — Growth (₹7.5K/month)</option>
+              <option value="Tier 3 — Premium (₹20K+/month)">Tier 3 — Premium (₹20K+/month)</option>
+              <option value="Not sure — let's discuss">Not sure — let's discuss</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Your Thoughts on This Business Model *</label>
+            <textarea name="feedback" class="form-textarea" placeholder="We'd love to hear your honest feedback — what excites you about CafeConnects? What concerns do you have? How do you see this helping your café specifically?" required style="min-height:140px;"></textarea>
+          </div>
+
+          <div style="background:var(--cream);border:1px solid var(--rose);border-radius:var(--radius-md);padding:16px;margin-bottom:24px;font-size:13px;color:var(--text-muted);">
+            <strong style="color:var(--espresso)">📋 What happens next:</strong> Our team reviews your application within 48 hours. We'll schedule a 20-minute call to walk you through the platform, answer questions, and get your café set up. No commitment until you're ready.
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg w-full">Register My Café →</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" id="contact">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo"><div class="logo-icon"></div>CafeConnects</a>
+          <p class="footer-desc mt-16">Real people. Real cafés. Real conversations. Bangalore's café-based social discovery platform.</p>
+          <p class="footer-desc"><a href="mailto:hello@cafeconnects.in" style="color:rgba(255,255,255,0.55)">📧 hello@cafeconnects.in</a></p>
+          <div class="footer-social mt-24"><a href="#" class="social-icon">📸</a><a href="#" class="social-icon">🐦</a><a href="#" class="social-icon">💼</a></div>
+        </div>
+        <div class="footer-col"><h4>Product</h4><ul class="footer-links"><li><a href="product.html" class="footer-link">How It Works</a></li><li><a href="safety.html" class="footer-link">Safety</a></li></ul></div>
+        <div class="footer-col"><h4>Company</h4><ul class="footer-links"><li><a href="blog.html" class="footer-link">Blog</a></li><li><a href="careers.html" class="footer-link">Careers</a></li><li><a href="collaborations.html" class="footer-link">Collaborations</a></li></ul></div>
+        <div class="footer-col"><h4>Resources</h4><ul class="footer-links"><li><a href="bangalore-cafes.html" class="footer-link">Bangalore Cafes</a></li></ul></div>
+        <div class="footer-col"><h4>Legal</h4><ul class="footer-links"><li><a href="privacy-policy.html" class="footer-link">Privacy Policy</a></li><li><a href="terms.html" class="footer-link">Terms</a></li><li><a href="refund-policy.html" class="footer-link">Refund Policy</a></li></ul></div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2026 CafeConnects. Built with ☕ in Bangalore.</p>
+        <div class="footer-legal"><a href="privacy-policy.html">Privacy</a><a href="terms.html">Terms</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="shared.js"></script>
+</body>
+</html>

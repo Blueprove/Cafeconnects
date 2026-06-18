@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product — CafeConnects</title>
+  <meta name="description" content="How CafeConnects works: discover, poke, connect. A privacy-first social platform built for real-world café connections." />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ── Page Hero ────────────────────────── */
+    .page-hero {
+      background: var(--cream);
+      padding: 160px 0 100px;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 70% at 80% 50%, rgba(247,216,216,0.5) 0%, transparent 60%);
+    }
+    .page-hero-dots {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(93,64,55,0.05) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+    .page-hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+    }
+    .page-hero h1 {
+      font-size: clamp(40px, 5.5vw, 68px);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      color: var(--espresso);
+      margin-bottom: 20px;
+    }
+    .page-hero p {
+      font-size: 19px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    /* ── Journey Section ──────────────────── */
+    .journey-section { background: var(--white); }
+
+    .journey-item {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      padding: 80px 0;
+      border-bottom: 1px solid rgba(215,204,200,0.5);
+    }
+    .journey-item:last-child { border-bottom: none; }
+    .journey-item:nth-child(even) .journey-visual { order: -1; }
+
+    .journey-step-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .step-pill {
+      background: var(--espresso);
+      color: var(--white);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: var(--radius-full);
+    }
+    .step-connector {
+      height: 1px;
+      flex: 1;
+      background: linear-gradient(90deg, var(--espresso), transparent);
+    }
+
+    .journey-content h2 {
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 800;
+      margin-bottom: 16px;
+      color: var(--espresso);
+    }
+    .journey-content p {
+      font-size: 16px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+    .journey-points { list-style: none; }
+    .journey-points li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      padding: 8px 0;
+    }
+    .journey-points li::before {
+      content: '✓';
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #E8F5E9;
+      color: #2E7D32;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .journey-visual {
+      position: relative;
+    }
+
+    /* ── Phone Mockup Variants ────────────── */
+    .phone-wrap {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      position: relative;
+    }
+
+    .product-phone {
+      width: 240px;
+      height: 480px;
+      background: var(--dark);
+      border-radius: 38px;
+      position: relative;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.35), inset 0 0 0 2px rgba(255,255,255,0.08);
+      overflow: hidden;
+    }
+
+    .product-phone::before {
+      content: '';
+      position: absolute;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 22px;
+      background: var(--dark);
+      border-radius: 11px;
+      z-index: 10;
+    }
+
+    .product-phone .phone-screen-content {
+      position: absolute;
+      inset: 0;
+      background: var(--cream);
+      margin: 4px;
+      border-radius: 35px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .screen-status {
+      background: var(--espresso);
+      padding: 44px 16px 16px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+    .screen-status h4 { color: #fff; font-size: 14px; font-weight: 700; font-family: var(--font-display); }
+    .screen-status p { color: rgba(255,255,255,0.6); font-size: 10px; margin-top: 3px; }
+
+    .screen-body {
+      flex: 1;
+      padding: 12px;
+      overflow: hidden;
+    }
+
+    .info-chip {
+      background: var(--white);
+      border: 1px solid var(--rose);
+      border-radius: 20px;
+      padding: 6px 12px;
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--espresso);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin: 3px;
+    }
+
+    .poke-sent {
+      background: linear-gradient(135deg, #E8F5E9, #F1F8E9);
+      border: 1px solid #A5D6A7;
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+      margin: 8px 0;
+    }
+    .poke-sent .emoji { font-size: 32px; margin-bottom: 8px; }
+    .poke-sent h4 { font-size: 13px; color: #2E7D32; font-weight: 700; }
+    .poke-sent p  { font-size: 10px; color: #558B2F; margin-top: 4px; }
+
+    .chat-bubble-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 8px 0;
+    }
+    .chat-bubble {
+      max-width: 75%;
+      padding: 8px 12px;
+      border-radius: 14px;
+      font-size: 10px;
+      line-height: 1.4;
+    }
+    .chat-bubble.sent {
+      background: var(--espresso);
+      color: #fff;
+      align-self: flex-end;
+      border-bottom-right-radius: 4px;
+    }
+    .chat-bubble.received {
+      background: var(--white);
+      color: var(--espresso);
+      align-self: flex-start;
+      border-bottom-left-radius: 4px;
+      border: 1px solid var(--latte);
+    }
+    .chat-meta {
+      font-size: 9px;
+      color: var(--text-light);
+      text-align: center;
+      margin: 4px 0;
+    }
+
+    .unlock-screen {
+      background: var(--grad-warm);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      text-align: center;
+    }
+    .unlock-screen .trophy { font-size: 48px; margin-bottom: 12px; }
+    .unlock-screen h4 { color: #fff; font-size: 14px; font-weight: 700; margin-bottom: 6px; font-family: var(--font-display); }
+    .unlock-screen p { color: rgba(255,255,255,0.7); font-size: 10px; line-height: 1.5; }
+    .unlock-cta { background: rgba(255,255,255,0.2); color: #fff; border-radius: 20px; padding: 8px 16px; font-size: 10px; font-weight: 700; margin-top: 12px; display: inline-block; }
+
+    /* ── Feature Cards ────────────────────── */
+    .features-section { background: var(--cream); }
+    .features-big-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .feature-big-card {
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      padding: 40px 32px;
+      border: 1px solid rgba(215,204,200,0.5);
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s var(--ease-smooth);
+    }
+    .feature-big-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-6px);
+      border-color: var(--rose);
+    }
+    .feature-big-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: var(--radius-md);
+      background: var(--cream);
+      border: 1px solid var(--rose);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      margin-bottom: 24px;
+    }
+    .feature-big-card h3 { font-size: 20px; margin-bottom: 10px; }
+    .feature-big-card p  { font-size: 14px; color: var(--text-muted); line-height: 1.65; }
+
+    /* ── Comparison ───────────────────────── */
+    .comparison-section { background: var(--white); }
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+    }
+    .comparison-table th {
+      padding: 20px 24px;
+      font-size: 14px;
+      font-weight: 700;
+      font-family: var(--font-display);
+      text-align: left;
+    }
+    .comparison-table th:first-child { background: var(--cream); color: var(--espresso); width: 30%; }
+    .comparison-table th:nth-child(2) {
+      background: var(--rose);
+      color: var(--espresso);
+      text-align: center;
+    }
+    .comparison-table th:nth-child(3) {
+      background: #EEEEEE;
+      color: #666;
+      text-align: center;
+    }
+    .comparison-table td {
+      padding: 16px 24px;
+      font-size: 14px;
+      border-top: 1px solid rgba(215,204,200,0.5);
+    }
+    .comparison-table td:first-child { font-weight: 500; color: var(--espresso); background: var(--cream); }
+    .comparison-table td:nth-child(2) { text-align: center; background: rgba(247,216,216,0.15); color: var(--espresso); }
+    .comparison-table td:nth-child(3) { text-align: center; color: #888; }
+    .comparison-table tr:nth-child(even) td:first-child { background: rgba(255,248,243,0.7); }
+    .yes { color: #2E7D32; font-weight: 700; font-size: 16px; }
+    .no  { color: #C62828; font-weight: 700; font-size: 16px; }
+
+    @media (max-width: 768px) {
+      .journey-item { grid-template-columns: 1fr; gap: 40px; }
+      .journey-item:nth-child(even) .journey-visual { order: 0; }
+      .features-big-grid { grid-template-columns: 1fr; }
+      .comparison-table { font-size: 12px; }
+      .comparison-table th, .comparison-table td { padding: 12px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="logo"><div class="logo-icon"></div>CafeConnects</a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="product.html" class="nav-link active">Product</a>
+        <a href="for-cafes.html" class="nav-link">For Cafes</a>
+        <a href="blog.html" class="nav-link">Blog</a>
+        <a href="bangalore-cafes.html" class="nav-link">Bangalore Cafes</a>
+        <div class="nav-dropdown">
+          <a href="#" class="nav-link">More ▾</a>
+          <div class="nav-dropdown-menu">
+            <a href="careers.html" class="nav-dropdown-item">Careers</a>
+            <a href="collaborations.html" class="nav-dropdown-item">Collaborations</a>
+            <a href="safety.html" class="nav-dropdown-item">Safety</a>
+            <a href="privacy-policy.html" class="nav-dropdown-item">Privacy Policy</a>
+            <a href="terms.html" class="nav-dropdown-item">Terms of Service</a>
+            <a href="refund-policy.html" class="nav-dropdown-item">Refund Policy</a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-cta">
+        <a href="for-cafes.html" class="btn-nav">Partner With Us</a>
+        <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobile-menu">
+    <button class="mobile-close" id="mobile-close">✕</button>
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="product.html" class="nav-link active">Product</a>
+    <a href="for-cafes.html" class="nav-link">For Cafes</a>
+    <a href="blog.html" class="nav-link">Blog</a>
+    <a href="bangalore-cafes.html" class="nav-link">Bangalore Cafes</a>
+    <a href="careers.html" class="nav-link">Careers</a>
+    <a href="collaborations.html" class="nav-link">Collaborations</a>
+    <a href="safety.html" class="nav-link">Safety</a>
+  </div>
+
+  <!-- ═══ PAGE HERO ═══ -->
+  <section class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-dots"></div>
+    <div class="container">
+      <div class="page-hero-inner">
+        <div class="eyebrow reveal"><span class="eyebrow-dot"></span>How CafeConnects Works</div>
+        <h1 class="reveal">The Product Built for <em>Real</em> Connections.</h1>
+        <p class="reveal reveal-delay-1">
+          Five thoughtful steps from "sitting near someone interesting" to "actually having a genuine conversation." Every design choice prioritises safety, privacy, and authenticity.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ JOURNEY ═══ -->
+  <section class="journey-section section">
+    <div class="container">
+
+      <!-- Step 1 -->
+      <div class="journey-item">
+        <div class="journey-content reveal">
+          <div class="journey-step-label">
+            <span class="step-pill">Step 1</span>
+            <div class="step-connector"></div>
+          </div>
+          <h2>Discover People Around You in Cafés</h2>
+          <p>
+            Open CafeConnects at any partner café. Using precise proximity detection (within 10 metres), the app shows you anonymised profiles of people who are physically nearby — matching your declared interests.
+          </p>
+          <p>
+            No photos. No full names. Just a bio, age, and the interests you have in common. We designed it this way deliberately: connect based on <em>who someone is</em>, not what they look like.
+          </p>
+          <ul class="journey-points">
+            <li>See only people within 10 metres of you</li>
+            <li>Profiles ranked by shared interest overlap</li>
+            <li>Photos hidden until mutual interest confirmed</li>
+            <li>Works at 120+ partner cafés across Bangalore</li>
+          </ul>
+        </div>
+        <div class="journey-visual reveal reveal-delay-2">
+          <div class="phone-wrap">
+            <div class="product-phone">
+              <div class="phone-screen-content">
+                <div class="screen-status">
+                  <h4>📍 Blue Tokai, Indiranagar</h4>
+                  <p>You're connected · 4 people nearby</p>
+                </div>
+                <div class="screen-body">
+                  <p style="font-size:9px;font-weight:600;color:var(--text-muted);padding:4px 0 8px;text-transform:uppercase;letter-spacing:0.06em">Matching Interests</p>
+                  <div>
+                    <span class="info-chip">☕ Coffee Culture</span>
+                    <span class="info-chip">💡 Startups</span>
+                    <span class="info-chip">🎨 Design</span>
+                    <span class="info-chip">✈️ Travel</span>
+                    <span class="info-chip">📚 Books</span>
+                  </div>
+                  <div style="margin-top:12px;display:flex;flex-direction:column;gap:8px;">
+                    <div class="phone-user-card" style="border-radius:10px;padding:8px 10px">
+                      <div class="phone-avatar" style="width:32px;height:32px;background:#F7D8D8;font-size:14px">👤</div>
+                      <div class="phone-user-info">
+                        <strong style="font-size:11px">Arjun, 27 · He/Him</strong>
+                        <span style="font-size:9px">3 shared: Startups, Design, Coffee</span>
+                      </div>
+                    </div>
+                    <div class="phone-user-card" style="border-radius:10px;padding:8px 10px">
+                      <div class="phone-avatar" style="width:32px;height:32px;background:#D7CCC8;font-size:14px">👤</div>
+                      <div class="phone-user-info">
+                        <strong style="font-size:11px">Meera, 25 · She/Her</strong>
+                        <span style="font-size:9px">2 shared: Books, Travel</span>
+                      </div>
+                    </div>
+                    <div style="background:rgba(247,216,216,0.3);border:1px dashed var(--rose);border-radius:10px;padding:10px;text-align:center;">
+                      <p style="font-size:9px;color:var(--text-muted)">🔒 2 more profiles · Tap to unlock premium</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="journey-item">
+        <div class="journey-content reveal">
+          <div class="journey-step-label">
+            <span class="step-pill">Step 2</span>
+            <div class="step-connector"></div>
+          </div>
+          <h2>Send a Poke</h2>
+          <p>
+            Interested in someone? Tap "Poke" on their profile. A Poke is a gentle, low-pressure signal — think of it as a friendly acknowledgement, not a romantic advance.
+          </p>
+          <p>
+            The other person receives a discreet notification: "Someone at Blue Tokai is interested in you." They can choose to poke back, ignore it, or block. There's absolutely no pressure.
+          </p>
+          <ul class="journey-points">
+            <li>Anonymous notification — they know someone poked, not who</li>
+            <li>24-hour cooldown prevents spamming</li>
+            <li>Pokes expire in 7 days if not reciprocated</li>
+            <li>One-tap block removes someone permanently</li>
+          </ul>
+        </div>
+        <div class="journey-visual reveal reveal-delay-2">
+          <div class="phone-wrap">
+            <div class="product-phone">
+              <div class="phone-screen-content">
+                <div class="screen-status">
+                  <h4>👋 Poke Sent!</h4>
+                  <p>Arjun will be notified anonymously</p>
+                </div>
+                <div class="screen-body">
+                  <div class="poke-sent">
+                    <div class="emoji">👋</div>
+                    <h4>Poke Delivered!</h4>
+                    <p>Arjun at Blue Tokai received your poke. If he's interested, he'll poke back within 7 days.</p>
+                  </div>
+                  <div style="background:var(--white);border:1px solid var(--latte);border-radius:10px;padding:12px;margin-top:8px;">
+                    <p style="font-size:10px;font-weight:600;color:var(--espresso);margin-bottom:8px">What happens next:</p>
+                    <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+                      <div style="width:20px;height:20px;border-radius:50%;background:#E8F5E9;color:#2E7D32;display:flex;align-items:center;justify-content:center;font-size:9px;flex-shrink:0">✓</div>
+                      <p style="font-size:9px;color:var(--text-muted)">He sees an anonymous notification</p>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+                      <div style="width:20px;height:20px;border-radius:50%;background:#FFF8E1;color:#F57F17;display:flex;align-items:center;justify-content:center;font-size:9px;flex-shrink:0">⏳</div>
+                      <p style="font-size:9px;color:var(--text-muted)">If he pokes back, you both see each other's photos</p>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:8px;">
+                      <div style="width:20px;height:20px;border-radius:50%;background:#E3F2FD;color:#1565C0;display:flex;align-items:center;justify-content:center;font-size:9px;flex-shrink:0">💬</div>
+                      <p style="font-size:9px;color:var(--text-muted)">Chat unlocks while you're both at the café</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="journey-item">
+        <div class="journey-content reveal">
+          <div class="journey-step-label">
+            <span class="step-pill">Step 3</span>
+            <div class="step-connector"></div>
+          </div>
+          <h2>Mutual Interest Unlocks Conversation</h2>
+          <p>
+            When both of you have poked each other, the first lock breaks: photos become visible and an ephemeral chat opens. This chat exists <em>only</em> while you're both within 10 metres.
+          </p>
+          <p>
+            The proximity requirement is intentional — it keeps conversations grounded in the real world. Walk away, and the chat closes. Walk back in, and the warmth picks up right where it left off.
+          </p>
+          <ul class="journey-points">
+            <li>Photos unlock for both parties simultaneously</li>
+            <li>In-app chat only within 10 metres</li>
+            <li>Messages are ephemeral — deleted when session ends</li>
+            <li>The proximity rule encourages face-to-face conversation</li>
+          </ul>
+        </div>
+        <div class="journey-visual reveal reveal-delay-2">
+          <div class="phone-wrap">
+            <div class="product-phone">
+              <div class="phone-screen-content">
+                <div class="screen-status">
+                  <h4>🎉 Mutual Match!</h4>
+                  <p>Arjun poked back · Photos unlocked</p>
+                </div>
+                <div class="screen-body">
+                  <div style="background:linear-gradient(135deg,rgba(247,216,216,0.3),rgba(215,204,200,0.2));border:1px solid var(--rose);border-radius:12px;padding:10px;text-align:center;margin-bottom:10px;">
+                    <div style="width:52px;height:52px;border-radius:50%;background:var(--grad-warm);margin:0 auto 6px;display:flex;align-items:center;justify-content:center;font-size:22px;">😊</div>
+                    <p style="font-size:10px;font-weight:700;color:var(--espresso)">Arjun, 27</p>
+                    <p style="font-size:9px;color:var(--text-muted)">Software Engineer at Razorpay</p>
+                  </div>
+                  <p style="font-size:9px;color:#2E7D32;font-weight:600;margin-bottom:6px">📍 Within 10m · Chat active</p>
+                  <div class="chat-bubble-wrap">
+                    <div class="chat-bubble received">Hey! Love that you're working on startups too. What are you building?</div>
+                    <div class="chat-bubble sent">Working on a platform for founders to find co-founders. Coffee and coincidence, right? 😄</div>
+                    <div class="chat-bubble received">Ha! Small world. I'm at the corner table. Blue hoodie. 👋</div>
+                  </div>
+                  <div style="position:absolute;bottom:0;left:0;right:0;background:var(--white);border-top:1px solid var(--latte);padding:8px;border-radius:0 0 32px 32px;">
+                    <div style="background:var(--cream);border:1px solid var(--latte);border-radius:20px;padding:8px 12px;font-size:9px;color:var(--text-light)">Type a message…</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="journey-item">
+        <div class="journey-content reveal">
+          <div class="journey-step-label">
+            <span class="step-pill">Step 4</span>
+            <div class="step-connector"></div>
+          </div>
+          <h2>Build Genuine Connections Over Time</h2>
+          <p>
+            Connections deepen naturally across multiple café visits. After a 2nd mutual poke, the bond strengthens. After a 3rd — the connection fully unlocks: persistent chat, contact info sharing, and a permanent record of your friendship story.
+          </p>
+          <p>
+            This gradual progression mirrors how real friendships form — not through an algorithm, but through repeated, organic encounters at a place you both love.
+          </p>
+          <ul class="journey-points">
+            <li>Poke 1: Ephemeral in-café chat</li>
+            <li>Poke 2: Connection deepens, streak builds</li>
+            <li>Poke 3: Full unlock — persistent chat + contact sharing</li>
+            <li>Your friendship story is tied to the café you met at</li>
+          </ul>
+        </div>
+        <div class="journey-visual reveal reveal-delay-2">
+          <div class="phone-wrap">
+            <div class="product-phone">
+              <div class="phone-screen-content">
+                <div class="unlock-screen">
+                  <div class="trophy">🏆</div>
+                  <h4>Connection Unlocked!</h4>
+                  <p>3 mutual pokes at Blue Tokai. Chat is now persistent and you can share contact info.</p>
+                  <span class="unlock-cta">Share Contact Info →</span>
+                  <div style="margin-top:16px;background:rgba(255,255,255,0.1);border-radius:10px;padding:10px;">
+                    <p style="font-size:9px;color:rgba(255,255,255,0.6);text-align:center">Your connection story started at<br/><strong style="color:rgba(255,255,255,0.9)">Blue Tokai, Indiranagar</strong></p>
+                    <p style="font-size:9px;color:rgba(255,255,255,0.5);text-align:center;margin-top:4px">3 visits · 3 pokes · 1 real friendship</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 5 -->
+      <div class="journey-item">
+        <div class="journey-content reveal">
+          <div class="journey-step-label">
+            <span class="step-pill">Step 5</span>
+            <div class="step-connector"></div>
+          </div>
+          <h2>Safety and Privacy at Every Step</h2>
+          <p>
+            Safety isn't an afterthought — it's the foundation every feature is built on. From day one, we've made decisions that prioritise your wellbeing over engagement metrics.
+          </p>
+          <ul class="journey-points">
+            <li>ID verification before your first poke</li>
+            <li>Trust score system visible on every profile</li>
+            <li>Location data deleted the moment you close the app</li>
+            <li>Instant block — permanent, cross-account</li>
+            <li>Report abuse — reviewed within 24 hours</li>
+            <li>Auto-suspend after 3 verified reports in 7 days</li>
+          </ul>
+          <a href="safety.html" class="btn btn-secondary mt-24">Read Our Full Safety Policy →</a>
+        </div>
+        <div class="journey-visual reveal reveal-delay-2">
+          <div class="phone-wrap">
+            <div class="product-phone">
+              <div class="phone-screen-content">
+                <div class="screen-status" style="background:#1B5E20">
+                  <h4>🛡️ Safety Centre</h4>
+                  <p>You're protected at every step</p>
+                </div>
+                <div class="screen-body">
+                  <div style="display:flex;flex-direction:column;gap:8px;padding-top:4px;">
+                    <div style="background:#E8F5E9;border:1px solid #A5D6A7;border-radius:10px;padding:10px;display:flex;align-items:center;gap:8px;">
+                      <span style="font-size:16px">🪪</span>
+                      <div>
+                        <p style="font-size:10px;font-weight:700;color:#1B5E20">ID Verified</p>
+                        <p style="font-size:9px;color:#558B2F">Your identity is confirmed</p>
+                      </div>
+                      <span style="margin-left:auto;font-size:12px">✓</span>
+                    </div>
+                    <div style="background:#E8F5E9;border:1px solid #A5D6A7;border-radius:10px;padding:10px;display:flex;align-items:center;gap:8px;">
+                      <span style="font-size:16px">📍</span>
+                      <div>
+                        <p style="font-size:10px;font-weight:700;color:#1B5E20">Location Privacy</p>
+                        <p style="font-size:9px;color:#558B2F">Never stored in database</p>
+                      </div>
+                      <span style="margin-left:auto;font-size:12px">✓</span>
+                    </div>
+                    <div style="background:#E8F5E9;border:1px solid #A5D6A7;border-radius:10px;padding:10px;display:flex;align-items:center;gap:8px;">
+                      <span style="font-size:16px">⭐</span>
+                      <div>
+                        <p style="font-size:10px;font-weight:700;color:#1B5E20">Trust Score: 85/100</p>
+                        <p style="font-size:9px;color:#558B2F">High trust · Great reputation</p>
+                      </div>
+                      <span style="margin-left:auto;font-size:12px">✓</span>
+                    </div>
+                    <div style="background:rgba(247,216,216,0.5);border:1px solid var(--rose);border-radius:10px;padding:10px;text-align:center;">
+                      <p style="font-size:9px;color:var(--espresso);font-weight:600">🚨 Need help? Report or block instantly.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ FEATURE CARDS ═══ -->
+  <section class="features-section section" id="features">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="eyebrow"><span class="eyebrow-dot"></span>Platform Features</div>
+        <h2 class="display-sm">Every Feature Has a Reason</h2>
+        <p>Nothing here exists for engagement metrics. Every feature was built to make real-world connections safer, more natural, and more meaningful.</p>
+      </div>
+      <div class="features-big-grid">
+        <div class="feature-big-card reveal">
+          <div class="feature-big-icon">👤</div>
+          <h3>Anonymous Profiles</h3>
+          <p>Initial profiles show only age, pronouns, bio, and shared interests. Photos are a reward for mutual curiosity — not a hook for first impressions.</p>
+        </div>
+        <div class="feature-big-card reveal reveal-delay-1">
+          <div class="feature-big-icon">📍</div>
+          <h3>Proximity Chat</h3>
+          <p>In-café chat requires both users to stay within 10 metres. This is our favourite feature — it makes digital interaction an extension of the physical space.</p>
+        </div>
+        <div class="feature-big-card reveal reveal-delay-2">
+          <div class="feature-big-icon">🌱</div>
+          <h3>The 3-Poke Journey</h3>
+          <p>Three mutual pokes across café visits. Each poke deepens trust gradually — mirroring how real friendships actually develop over time and repeated encounters.</p>
+        </div>
+        <div class="feature-big-card reveal reveal-delay-3">
+          <div class="feature-big-icon">🔐</div>
+          <h3>Location Privacy Engine</h3>
+          <p>Real-time location held in memory, never written to disk. When you close the app, your position is gone. No trails. No history. No surveillance.</p>
+        </div>
+        <div class="feature-big-card reveal reveal-delay-4">
+          <div class="feature-big-icon">⭐</div>
+          <h3>Trust Score System</h3>
+          <p>A community-driven trust score (0-100) reflects your history of positive interactions. High-trust users see more profiles. Low-trust users see fewer. It self-regulates.</p>
+        </div>
+        <div class="feature-big-card reveal reveal-delay-5">
+          <div class="feature-big-icon">📣</div>
+          <h3>Interest Matching</h3>
+          <p>Profiles ranked by Jaccard similarity — the overlap between your declared interests and theirs. The more you have in common, the higher they appear in your feed.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ COMPARISON ═══ -->
+  <section class="comparison-section section">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="eyebrow"><span class="eyebrow-dot"></span>Why CafeConnects</div>
+        <h2 class="display-sm">A Different Kind of Social Platform</h2>
+        <p>We're not trying to fix dating apps. We're building something entirely different.</p>
+      </div>
+      <div class="reveal" style="overflow-x:auto">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>☕ CafeConnects</th>
+              <th>Traditional Social Apps</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>First impression based on…</td>
+              <td>Shared interests & bio</td>
+              <td>Photos & age only</td>
+            </tr>
+            <tr>
+              <td>Connection requirement</td>
+              <td>Physically nearby in a café</td>
+              <td>Anywhere, anytime</td>
+            </tr>
+            <tr>
+              <td>Location data stored</td>
+              <td class="no">✕ Never</td>
+              <td class="yes">✓ Always</td>
+            </tr>
+            <tr>
+              <td>Photo privacy</td>
+              <td>Hidden until mutual interest</td>
+              <td>Public to all</td>
+            </tr>
+            <tr>
+              <td>Designed for</td>
+              <td>Friendship & community</td>
+              <td>Dating / casual</td>
+            </tr>
+            <tr>
+              <td>Chat requires proximity</td>
+              <td class="yes">✓ Yes (10m range)</td>
+              <td class="no">✕ No</td>
+            </tr>
+            <tr>
+              <td>ID verification</td>
+              <td class="yes">✓ Mandatory</td>
+              <td class="no">✕ Optional</td>
+            </tr>
+            <tr>
+              <td>Connection builds over</td>
+              <td>Multiple real-world visits</td>
+              <td>Instant swipe</td>
+            </tr>
+            <tr>
+              <td>Engagement model</td>
+              <td>Organic real-world encounters</td>
+              <td>Dopamine-optimised feed</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="text-center mt-48 reveal">
+        <a href="index.html#download" class="btn btn-primary btn-lg">Download the App →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" id="contact">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo"><div class="logo-icon"></div>CafeConnects</a>
+          <p class="footer-desc mt-16">Real people. Real cafés. Real conversations. Bangalore's café-based social discovery platform.</p>
+          <p class="footer-desc"><a href="mailto:hello@cafeconnects.in" style="color:rgba(255,255,255,0.55)">📧 hello@cafeconnects.in</a></p>
+          <div class="footer-social mt-24">
+            <a href="#" class="social-icon">📸</a><a href="#" class="social-icon">🐦</a><a href="#" class="social-icon">💼</a>
+          </div>
+        </div>
+        <div class="footer-col"><h4>Product</h4><ul class="footer-links"><li><a href="product.html" class="footer-link">How It Works</a></li><li><a href="safety.html" class="footer-link">Safety</a></li><li><a href="index.html#download" class="footer-link">Download</a></li></ul></div>
+        <div class="footer-col"><h4>Company</h4><ul class="footer-links"><li><a href="blog.html" class="footer-link">Blog</a></li><li><a href="careers.html" class="footer-link">Careers</a></li><li><a href="for-cafes.html" class="footer-link">For Cafes</a></li></ul></div>
+        <div class="footer-col"><h4>Resources</h4><ul class="footer-links"><li><a href="bangalore-cafes.html" class="footer-link">Bangalore Cafes</a></li><li><a href="collaborations.html" class="footer-link">Collaborations</a></li></ul></div>
+        <div class="footer-col"><h4>Legal</h4><ul class="footer-links"><li><a href="privacy-policy.html" class="footer-link">Privacy Policy</a></li><li><a href="terms.html" class="footer-link">Terms</a></li><li><a href="refund-policy.html" class="footer-link">Refund Policy</a></li></ul></div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2026 CafeConnects. Built with ☕ in Bangalore.</p>
+        <div class="footer-legal"><a href="privacy-policy.html">Privacy</a><a href="terms.html">Terms</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="shared.js"></script>
+</body>
+</html>

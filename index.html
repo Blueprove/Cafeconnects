@@ -1,0 +1,1443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CafeConnects — Meaningful Connections Begin Over Coffee</title>
+  <meta name="description" content="CafeConnects helps people meet naturally in Bangalore's best cafés. Not a dating app — a platform for real, meaningful connections over coffee." />
+  <meta property="og:title" content="CafeConnects — Meaningful Connections Begin Over Coffee" />
+  <meta property="og:description" content="Real people. Real cafés. Real conversations. Bangalore's first café-based social discovery platform." />
+  <meta property="og:type" content="website" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ── Hero ─────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      background: var(--cream);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      padding-top: 72px;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 70% 50%, rgba(247,216,216,0.5) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 50% at 20% 80%, rgba(215,204,200,0.4) 0%, transparent 50%);
+    }
+
+    .hero-bg-dots {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(93,64,55,0.06) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 64px;
+      padding: 80px 0;
+    }
+
+    .hero-content { flex: 1; max-width: 620px; }
+
+    .hero-badges {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+
+    .not-dating-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: rgba(239,83,80,0.08);
+      border: 1px solid rgba(239,83,80,0.2);
+      border-radius: var(--radius-full);
+      font-size: 12px;
+      font-weight: 700;
+      color: #C62828;
+      letter-spacing: 0.05em;
+    }
+
+    .not-dating-badge::before { content: '🚫'; }
+
+    .hero-title {
+      font-size: clamp(44px, 6vw, 80px);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.0;
+      color: var(--espresso);
+      margin-bottom: 24px;
+    }
+
+    .hero-title .accent {
+      background: linear-gradient(135deg, var(--coffee) 0%, #8D4E2D 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: 19px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      margin-bottom: 40px;
+      max-width: 500px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+    }
+
+    .hero-trust {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .trust-item .icon {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #E8F5E9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+    }
+
+    /* ── Hero Visual ──────────────────────── */
+    .hero-visual-wrap {
+      flex-shrink: 0;
+      position: relative;
+      width: 380px;
+      height: 560px;
+    }
+
+    .hero-phone {
+      width: 260px;
+      height: 520px;
+      background: var(--dark);
+      border-radius: 40px;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 48px 96px rgba(0,0,0,0.45), inset 0 0 0 2px rgba(255,255,255,0.08);
+      overflow: hidden;
+      animation: float 5s ease-in-out infinite;
+    }
+
+    .hero-phone::before {
+      content: '';
+      position: absolute;
+      top: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90px;
+      height: 24px;
+      background: var(--dark);
+      border-radius: 12px;
+      z-index: 10;
+    }
+
+    .phone-content {
+      margin: 4px;
+      border-radius: 37px;
+      background: var(--cream);
+      height: calc(100% - 8px);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .phone-header {
+      background: var(--espresso);
+      padding: 48px 16px 16px;
+      text-align: center;
+    }
+
+    .phone-header h4 {
+      color: var(--white);
+      font-size: 16px;
+      font-weight: 700;
+      font-family: var(--font-display);
+    }
+
+    .phone-header p {
+      color: rgba(255,255,255,0.6);
+      font-size: 11px;
+      margin-top: 4px;
+    }
+
+    .phone-user-list {
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .phone-user-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 2px 8px rgba(62,39,35,0.08);
+      border: 1px solid rgba(215,204,200,0.4);
+    }
+
+    .phone-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .phone-user-info { flex: 1; }
+
+    .phone-user-info strong {
+      font-size: 12px;
+      color: var(--espresso);
+      display: block;
+    }
+
+    .phone-user-info span {
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+
+    .phone-poke-btn {
+      background: var(--espresso);
+      color: var(--white);
+      font-size: 10px;
+      font-weight: 700;
+      padding: 5px 10px;
+      border-radius: 20px;
+      flex-shrink: 0;
+      font-family: var(--font-body);
+    }
+
+    .phone-bottom-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--white);
+      border-top: 1px solid var(--latte);
+      padding: 8px 16px;
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .phone-nav-icon {
+      font-size: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      font-size: 18px;
+    }
+
+    /* Floating decorations */
+    .hero-float-1 {
+      position: absolute;
+      top: 40px;
+      right: -20px;
+      background: var(--white);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-lg);
+      padding: 12px 16px;
+      border: 1px solid rgba(215,204,200,0.6);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--espresso);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      animation: float 4s ease-in-out infinite;
+      z-index: 10;
+      white-space: nowrap;
+    }
+
+    .hero-float-2 {
+      position: absolute;
+      bottom: 80px;
+      left: -30px;
+      background: var(--white);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-lg);
+      padding: 12px 16px;
+      border: 1px solid rgba(215,204,200,0.6);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--espresso);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      animation: float 3.5s ease-in-out infinite 0.8s;
+      z-index: 10;
+      white-space: nowrap;
+    }
+
+    .hero-float-3 {
+      position: absolute;
+      bottom: 160px;
+      right: -10px;
+      background: var(--espresso);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-lg);
+      padding: 10px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      animation: float 4.5s ease-in-out infinite 1.5s;
+      z-index: 10;
+    }
+
+    /* ── Not Dating App Section ───────────── */
+    .not-dating-section {
+      background: var(--espresso);
+      padding: 64px 0;
+    }
+
+    .not-dating-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      text-align: center;
+    }
+
+    .not-dating-item {
+      padding: 24px;
+    }
+
+    .not-dating-item .icon { font-size: 36px; margin-bottom: 12px; }
+
+    .not-dating-item h4 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 8px;
+      font-family: var(--font-display);
+    }
+
+    .not-dating-item p {
+      font-size: 13px;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.5;
+    }
+
+    /* ── Stats Section ────────────────────── */
+    .stats-section {
+      background: var(--white);
+      padding: var(--section-py) 0;
+    }
+
+    /* ── How It Works ─────────────────────── */
+    .hiw-section { background: var(--cream); }
+
+    .hiw-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      position: relative;
+      margin-top: 64px;
+    }
+
+    .hiw-steps::before {
+      content: '';
+      position: absolute;
+      top: 40px;
+      left: 12.5%;
+      right: 12.5%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--espresso), var(--latte), var(--espresso));
+      z-index: 0;
+    }
+
+    .hiw-step {
+      text-align: center;
+      padding: 0 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hiw-step-num {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 3px solid var(--espresso);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--espresso);
+      box-shadow: var(--shadow-md);
+      transition: all 0.3s var(--ease-spring);
+    }
+
+    .hiw-step:hover .hiw-step-num {
+      background: var(--espresso);
+      color: var(--white);
+      transform: scale(1.1);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .hiw-step h3 {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--espresso);
+    }
+
+    .hiw-step p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ── Benefits ─────────────────────────── */
+    .benefits-section { background: var(--white); }
+
+    .benefits-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .benefits-column h3 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--espresso);
+    }
+
+    .benefits-column > p {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+    }
+
+    .benefit-item {
+      display: flex;
+      gap: 16px;
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(215,204,200,0.5);
+    }
+
+    .benefit-item:last-child { border-bottom: none; }
+
+    .benefit-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--cream);
+      border: 1px solid var(--rose);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .benefit-text h4 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--espresso);
+      margin-bottom: 4px;
+    }
+
+    .benefit-text p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* ── Testimonials ─────────────────────── */
+    .testimonials-section { background: var(--cream); }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    /* ── Safety Strip ─────────────────────── */
+    .safety-strip {
+      background: linear-gradient(135deg, #3E2723 0%, #4E342E 100%);
+      padding: 80px 0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .safety-strip::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(247,216,216,0.1) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .safety-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .safety-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 32px;
+    }
+
+    .safety-feature {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .safety-feature-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .safety-feature h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+
+    .safety-feature p {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.5;
+    }
+
+    .safety-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .safety-stat-card {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius-lg);
+      padding: 28px 32px;
+      backdrop-filter: blur(10px);
+    }
+
+    .safety-stat-num {
+      font-family: var(--font-display);
+      font-size: 48px;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.04em;
+    }
+
+    .safety-stat-label {
+      font-size: 14px;
+      color: rgba(255,255,255,0.55);
+      margin-top: 4px;
+    }
+
+    /* ── Download Section ─────────────────── */
+    .download-section {
+      background: var(--cream);
+      padding: var(--section-py) 0;
+    }
+
+    .download-inner {
+      background: var(--grad-warm);
+      border-radius: var(--radius-xl);
+      padding: 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .download-inner::before {
+      content: '';
+      position: absolute;
+      top: -40%;
+      right: -5%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .download-content { position: relative; }
+
+    .download-content h2 {
+      color: var(--white);
+      font-size: 40px;
+      margin-bottom: 16px;
+    }
+
+    .download-content p {
+      color: rgba(255,255,255,0.7);
+      font-size: 17px;
+      margin-bottom: 36px;
+      line-height: 1.65;
+    }
+
+    .download-visual {
+      display: flex;
+      justify-content: center;
+      position: relative;
+    }
+
+    /* ── Newsletter ───────────────────────── */
+    .newsletter-section {
+      background: var(--white);
+      padding: 80px 0;
+      border-top: 1px solid rgba(215,204,200,0.5);
+    }
+
+    .newsletter-inner {
+      max-width: 560px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .newsletter-form .form-input {
+      flex: 1;
+      background: var(--cream);
+    }
+
+    /* ── Responsive ───────────────────────── */
+    @media (max-width: 1024px) {
+      .hero-inner { gap: 40px; }
+      .hero-visual-wrap { width: 320px; }
+      .not-dating-grid { grid-template-columns: repeat(2, 1fr); }
+      .hiw-steps { grid-template-columns: repeat(2, 1fr); }
+      .hiw-steps::before { display: none; }
+      .benefits-split { gap: 48px; }
+      .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+      .safety-content { gap: 40px; }
+      .download-inner { padding: 60px 48px; gap: 40px; }
+    }
+
+    @media (max-width: 768px) {
+      .hero-inner { flex-direction: column; text-align: center; padding: 60px 0; }
+      .hero-visual-wrap { width: 280px; height: 480px; }
+      .hero-phone { width: 220px; height: 440px; }
+      .hero-trust { justify-content: center; }
+      .hero-actions { justify-content: center; }
+      .not-dating-grid { grid-template-columns: 1fr 1fr; }
+      .benefits-split { grid-template-columns: 1fr; gap: 40px; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .safety-content { grid-template-columns: 1fr; gap: 40px; }
+      .safety-features { grid-template-columns: 1fr; }
+      .safety-stats { flex-direction: row; flex-wrap: wrap; }
+      .download-inner { grid-template-columns: 1fr; padding: 48px 32px; text-align: center; }
+      .newsletter-form { flex-direction: column; }
+      .hiw-steps { grid-template-columns: 1fr; gap: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"></div>
+        CafeConnects
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="product.html" class="nav-link">Product</a>
+        <a href="for-cafes.html" class="nav-link">For Cafes</a>
+        <a href="blog.html" class="nav-link">Blog</a>
+        <a href="bangalore-cafes.html" class="nav-link">Bangalore Cafes</a>
+        <div class="nav-dropdown">
+          <a href="#" class="nav-link">More ▾</a>
+          <div class="nav-dropdown-menu">
+            <a href="careers.html" class="nav-dropdown-item">Careers</a>
+            <a href="collaborations.html" class="nav-dropdown-item">Collaborations</a>
+            <a href="safety.html" class="nav-dropdown-item">Safety</a>
+            <a href="privacy-policy.html" class="nav-dropdown-item">Privacy Policy</a>
+            <a href="terms.html" class="nav-dropdown-item">Terms of Service</a>
+            <a href="refund-policy.html" class="nav-dropdown-item">Refund Policy</a>
+            <a href="#contact" class="nav-dropdown-item">Contact</a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-cta">
+        <a href="for-cafes.html" class="btn-nav">Partner With Us</a>
+        <button class="hamburger" id="hamburger" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobile-menu">
+    <button class="mobile-close" id="mobile-close">✕</button>
+    <a href="index.html" class="nav-link active">Home</a>
+    <a href="product.html" class="nav-link">Product</a>
+    <a href="for-cafes.html" class="nav-link">For Cafes</a>
+    <a href="blog.html" class="nav-link">Blog</a>
+    <a href="bangalore-cafes.html" class="nav-link">Bangalore Cafes</a>
+    <a href="careers.html" class="nav-link">Careers</a>
+    <a href="collaborations.html" class="nav-link">Collaborations</a>
+    <a href="safety.html" class="nav-link">Safety</a>
+    <a href="for-cafes.html" class="btn btn-primary mt-24">Partner With Us</a>
+  </div>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- HERO                                    -->
+  <!-- ═══════════════════════════════════════ -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-bg-dots"></div>
+
+    <!-- Coffee bean blobs -->
+    <div class="bg-blob" style="width:500px;height:500px;background:#F7D8D8;top:-100px;right:-100px;"></div>
+    <div class="bg-blob" style="width:300px;height:300px;background:#D7CCC8;bottom:-50px;left:5%;"></div>
+
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-content">
+
+          <div class="hero-badges">
+            <div class="trust-banner">
+              <span class="dot"></span>
+              Now Live in Bangalore
+            </div>
+            <div class="not-dating-badge">
+              NOT A DATING APP
+            </div>
+          </div>
+
+          <h1 class="hero-title">
+            Meaningful<br/>
+            Connections<br/>
+            Begin Over <span class="accent">Coffee.</span>
+          </h1>
+
+          <p class="hero-sub">
+            Helping people meet naturally while helping cafés create communities.
+            Real people. Real cafés. Real conversations.
+          </p>
+
+          <div class="hero-actions">
+            <div class="app-buttons">
+              <a href="#download" class="app-btn">
+                <span class="app-btn-icon">🍎</span>
+                <span class="app-btn-text">
+                  <small>Download on the</small>
+                  <strong>App Store</strong>
+                </span>
+              </a>
+              <a href="#download" class="app-btn">
+                <span class="app-btn-icon">▶</span>
+                <span class="app-btn-text">
+                  <small>Get it on</small>
+                  <strong>Google Play</strong>
+                </span>
+              </a>
+            </div>
+          </div>
+
+          <div class="hero-trust">
+            <div class="trust-item">
+              <div class="icon" style="background:#E8F5E9;color:#2E7D32">✓</div>
+              Privacy-first
+            </div>
+            <div class="trust-item">
+              <div class="icon" style="background:#E8F5E9;color:#2E7D32">✓</div>
+              Safety-first
+            </div>
+            <div class="trust-item">
+              <div class="icon" style="background:#E8F5E9;color:#2E7D32">✓</div>
+              Verified users
+            </div>
+            <div class="trust-item">
+              <div class="icon" style="background:#E8F5E9;color:#2E7D32">✓</div>
+              No photos until mutual
+            </div>
+          </div>
+        </div>
+
+        <!-- Phone Visual -->
+        <div class="hero-visual-wrap">
+          <div class="hero-phone">
+            <div class="phone-content">
+              <div class="phone-header">
+                <h4>☕ Blue Tokai, Indiranagar</h4>
+                <p>3 people nearby match your interests</p>
+              </div>
+              <div class="phone-user-list">
+                <div class="phone-user-card">
+                  <div class="phone-avatar" style="background:#F7D8D8;">🧑</div>
+                  <div class="phone-user-info">
+                    <strong>Arjun, 27</strong>
+                    <span>Startups · Design · Travel</span>
+                  </div>
+                  <button class="phone-poke-btn">Poke 👋</button>
+                </div>
+                <div class="phone-user-card">
+                  <div class="phone-avatar" style="background:#D7CCC8;">👩</div>
+                  <div class="phone-user-info">
+                    <strong>Meera, 25</strong>
+                    <span>Tech · Coffee · Books</span>
+                  </div>
+                  <button class="phone-poke-btn">Poke 👋</button>
+                </div>
+                <div class="phone-user-card">
+                  <div class="phone-avatar" style="background:#F7D8D8;">🧑</div>
+                  <div class="phone-user-info">
+                    <strong>Rahul, 29</strong>
+                    <span>Music · Finance · Yoga</span>
+                  </div>
+                  <button class="phone-poke-btn">Poke 👋</button>
+                </div>
+                <div style="background:var(--cream);border-radius:10px;padding:10px;text-align:center;margin-top:4px;">
+                  <p style="font-size:11px;color:var(--text-muted)">🔒 Photos hidden until mutual poke</p>
+                </div>
+              </div>
+              <div class="phone-bottom-bar">
+                <span class="phone-nav-icon">🏠</span>
+                <span class="phone-nav-icon">🔍</span>
+                <span class="phone-nav-icon">💬</span>
+                <span class="phone-nav-icon">👤</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Floating cards -->
+          <div class="hero-float-1">
+            <span>🎉</span> New match at Blue Tokai!
+          </div>
+          <div class="hero-float-2">
+            <span>☕</span> 47 connections this week
+          </div>
+          <div class="hero-float-3">
+            <span>🔒</span> Privacy protected
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- NOT A DATING APP                        -->
+  <!-- ═══════════════════════════════════════ -->
+  <section class="not-dating-section">
+    <div class="container">
+      <div class="text-center mb-32">
+        <p style="font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:12px;">
+          What makes us different
+        </p>
+        <h2 style="color:var(--white);font-size:32px;font-weight:700;">CafeConnects is <em>not</em> a dating app.</h2>
+        <p style="color:rgba(255,255,255,0.55);font-size:16px;margin-top:12px;max-width:500px;margin-left:auto;margin-right:auto;">
+          We're building a platform for authentic human connections — friendships, professional networking, and community — rooted in real-world experiences.
+        </p>
+      </div>
+      <div class="not-dating-grid">
+        <div class="not-dating-item reveal">
+          <div class="icon">🤝</div>
+          <h4>Real Connections</h4>
+          <p>Build friendships and professional relationships, not romantic pursuits</p>
+        </div>
+        <div class="not-dating-item reveal reveal-delay-1">
+          <div class="icon">☕</div>
+          <h4>Café-First</h4>
+          <p>Every interaction starts in a real café with real people beside you</p>
+        </div>
+        <div class="not-dating-item reveal reveal-delay-2">
+          <div class="icon">🔒</div>
+          <h4>Privacy Protected</h4>
+          <p>No photos until mutual interest. Location never stored. You control everything</p>
+        </div>
+        <div class="not-dating-item reveal reveal-delay-3">
+          <div class="icon">🌱</div>
+          <h4>Community Growth</h4>
+          <p>Helping Bangalore's café ecosystem build vibrant, lasting communities</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- STATS                                   -->
+  <!-- ═══════════════════════════════════════ -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="eyebrow"><span class="eyebrow-dot"></span>By the numbers</div>
+        <h2 class="display-sm">Growing Bangalore's Coffee Community</h2>
+        <p>Join thousands of people already making meaningful connections at their favourite cafés.</p>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card reveal">
+          <div class="stat-number" data-count="5000" data-suffix="+">0</div>
+          <div class="stat-label">Active Users in Bangalore</div>
+        </div>
+        <div class="stat-card reveal reveal-delay-1">
+          <div class="stat-number" data-count="120" data-suffix="+">0</div>
+          <div class="stat-label">Partner Cafés</div>
+        </div>
+        <div class="stat-card reveal reveal-delay-2">
+          <div class="stat-number" data-count="2800" data-suffix="+">0</div>
+          <div class="stat-label">Meaningful Connections Made</div>
+        </div>
+        <div class="stat-card reveal reveal-delay-3">
+          <div class="stat-number" data-count="94" data-suffix="%">0</div>
+          <div class="stat-label">Users Feel Safe on Our Platform</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- HOW IT WORKS                            -->
+  <!-- ═══════════════════════════════════════ -->
+  <section class="hiw-section section">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="eyebrow"><span class="eyebrow-dot"></span>How it works</div>
+        <h2 class="display-sm">Four Simple Steps to a Real Connection</h2>
+        <p>CafeConnects guides you from discovering someone interesting to having a genuine conversation — all within the warmth of your favourite café.</p>
+      </div>
+
+      <div class="hiw-steps">
+        <div class="hiw-step reveal">
+          <div class="hiw-step-num">1</div>
+          <h3>Discover Nearby</h3>
+          <p>Open the app at any partner café. See anonymised profiles of people with shared interests sitting nearby — no photos yet.</p>
+        </div>
+        <div class="hiw-step reveal reveal-delay-1">
+          <div class="hiw-step-num">2</div>
+          <h3>Send a Poke</h3>
+          <p>Interested in someone? Send a friendly Poke. It's low-pressure — just a gentle signal of interest.</p>
+        </div>
+        <div class="hiw-step reveal reveal-delay-2">
+          <div class="hiw-step-num">3</div>
+          <h3>Mutual Match</h3>
+          <p>When they poke back, photos unlock and you can chat — only within 10 metres, only in person.</p>
+        </div>
+        <div class="hiw-step reveal reveal-delay-3">
+          <div class="hiw-step-num">4</div>
+          <h3>Build a Connection</h3>
+          <p>Three mutual pokes across visits unlocks persistent chat and contact sharing. A real relationship, built organically.</p>
+        </div>
+      </div>
+
+      <div class="text-center mt-48 reveal">
+        <a href="product.html" class="btn btn-primary btn-lg">See Full Product Details →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- BENEFITS                                -->
+  <!-- ═══════════════════════════════════════ -->
+  <section class="benefits-section section">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="eyebrow"><span class="eyebrow-dot"></span>Built for everyone</div>
+        <h2 class="display-sm">Good for People. Great for Cafés.</h2>
+      </div>
+
+      <div class="benefits-split">
+        <div class="benefits-column reveal">
+          <div class="eyebrow" style="background:var(--rose)"><span class="eyebrow-dot"></span>For Users</div>
+          <h3>Connect on your terms</h3>
+          <p>No algorithms. No endless scrolling. Just genuine connections that start in person.</p>
+
+          <div class="benefit-item">
+            <div class="benefit-icon">🛡️</div>
+            <div class="benefit-text">
+              <h4>Full Privacy Control</h4>
+              <p>Your location is never stored. Photos hidden until mutual interest. Block anyone instantly.</p>
+            </div>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-icon">🌟</div>
+            <div class="benefit-text">
+              <h4>Interest-Based Discovery</h4>
+              <p>See only people who share your passions — startups, design, travel, coffee culture.</p>
+            </div>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-icon">🤝</div>
+            <div class="benefit-text">
+              <h4>Low-Pressure Interactions</h4>
+              <p>The 3-poke system ensures connections are built gradually and comfortably.</p>
+            </div>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-icon">✅</div>
+            <div class="benefit-text">
+              <h4>Verified Community</h4>
+              <p>ID-verified users and a trust score system keep the community safe and genuine.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="benefits-column reveal reveal-delay-2">
+          <div class="eyebrow" style="background:var(--latte)"><span class="eyebrow-dot"></span>For Cafés</div>
+          <h3>Turn visitors into community</h3>
+          <p>Increase repeat footfall, build loyal regulars, and become a community destination.</p>
+
+          <div class="benefit-item">
+            <div class="benefit-icon">📈</div>
+            <div class="benefit-text">
+              <h4>Increase Repeat Visits</h4>
+              <p>Cafés see 35-45% repeat visitor rates from users who matched at their location.</p>
+            </div>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-icon">📊</div>
+            <div class="benefit-text">
+              <h4>Real Analytics Dashboard</h4>
+              <p>See peak hours, user demographics, match rates, and estimated repeat revenue.</p>
+            </div>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-icon">🎉</div>
+            <div class="benefit-text">
+              <h4>Co-Hosted Events</h4>
+              <p>"Poke Nights" bring 100+ people to your café — curated, branded, community events.</p>
+            </div>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-icon">📣</div>
+            <div class="benefit-text">
+              <h4>Co-Marketing Opportunities</h4>
+              <p>We feature partner cafés in our app, newsletter, and social channels.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- TESTIMONIALS                            -->
+  <!-- ═══════════════════════════════════════ -->
+  <section class="testimonials-section section">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="eyebrow"><span class="eyebrow-dot"></span>What people say</div>
+        <h2 class="display-sm">Real Stories, Real Connections</h2>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card reveal">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-quote">I met my best friend and co-founder at Blue Tokai through CafeConnects. We were both working on startups, had overlapping interests, and the café setting made it so natural. This isn't a dating app — it's something genuinely new.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" style="background:linear-gradient(135deg,#5D4037,#8D6E63)">A</div>
+            <div>
+              <div class="testimonial-name">Ananya R.</div>
+              <div class="testimonial-meta">Startup Founder · Indiranagar</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal reveal-delay-1">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-quote">As a café owner, the dashboard is a game-changer. I can see exactly when my regulars come in, what they're interested in, and the match data helps me plan events that actually fill seats.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" style="background:linear-gradient(135deg,#3E2723,#5D4037)">V</div>
+            <div>
+              <div class="testimonial-name">Vikram S.</div>
+              <div class="testimonial-meta">Café Owner · Koramangala</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal reveal-delay-2">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-quote">I was sceptical at first — another social app. But the no-photo-until-mutual-poke feature completely changes the dynamic. You connect based on who someone is, not what they look like.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" style="background:linear-gradient(135deg,#795548,#A1887F)">P</div>
+            <div>
+              <div class="testimonial-name">Priya M.</div>
+              <div class="testimonial-meta">Product Designer · HSR Layout</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- SAFETY STRIP                            -->
+  <!-- ═══════════════════════════════════════ -->
+  <section class="safety-strip">
+    <div class="container">
+      <div class="safety-content">
+        <div class="reveal">
+          <div class="eyebrow" style="background:rgba(255,255,255,0.12);color:rgba(255,255,255,0.7)">
+            <span class="eyebrow-dot" style="background:#fff"></span>Safety & Trust
+          </div>
+          <h2 style="color:var(--white);font-size:40px;margin-bottom:16px;">Your safety is our first principle.</h2>
+          <p style="color:rgba(255,255,255,0.6);font-size:17px;line-height:1.7;margin-bottom:32px;">
+            We've built every feature with safety at the core — from our no-photo-first approach to ID verification, trust scores, and instant block/report mechanisms.
+          </p>
+
+          <div class="safety-features">
+            <div class="safety-feature">
+              <div class="safety-feature-icon">🪪</div>
+              <div>
+                <h4>ID Verification</h4>
+                <p>All users go through identity verification before joining</p>
+              </div>
+            </div>
+            <div class="safety-feature">
+              <div class="safety-feature-icon">📍</div>
+              <div>
+                <h4>Location Never Stored</h4>
+                <p>Real-time only, deleted when you close the app</p>
+              </div>
+            </div>
+            <div class="safety-feature">
+              <div class="safety-feature-icon">🚫</div>
+              <div>
+                <h4>Instant Block & Report</h4>
+                <p>One tap to block. Permanent, cross-account blocks</p>
+              </div>
+            </div>
+            <div class="safety-feature">
+              <div class="safety-feature-icon">⭐</div>
+              <div>
+                <h4>Trust Score System</h4>
+                <p>Community-driven trust signals visible on every profile</p>
+              </div>
+            </div>
+          </div>
+
+          <a href="safety.html" class="btn btn-white mt-32">Learn About Our Safety Standards →</a>
+        </div>
+
+        <div class="safety-stats reveal reveal-delay-2">
+          <div class="safety-stat-card">
+            <div class="safety-stat-num" data-count="0" data-suffix="">0</div>
+            <div style="font-family:var(--font-display);font-size:36px;font-weight:800;color:var(--white);letter-spacing:-0.04em;">Zero</div>
+            <div class="safety-stat-label">Reported incidents of harm on our platform</div>
+          </div>
+          <div class="safety-stat-card">
+            <div style="font-family:var(--font-display);font-size:48px;font-weight:800;color:var(--white);letter-spacing:-0.04em;">100%</div>
+            <div class="safety-stat-label">Of users are ID-verified before their first poke</div>
+          </div>
+          <div class="safety-stat-card">
+            <div style="font-family:var(--font-display);font-size:48px;font-weight:800;color:var(--white);letter-spacing:-0.04em;">&lt;24hr</div>
+            <div class="safety-stat-label">Response time for all safety reports</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- FAQ                                     -->
+  <!-- ═══════════════════════════════════════ -->
+  <section class="section bg-cream" id="faq">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="eyebrow"><span class="eyebrow-dot"></span>Questions</div>
+        <h2 class="display-sm">Frequently Asked</h2>
+      </div>
+
+      <div style="max-width:720px;margin:0 auto">
+        <div class="faq-item reveal">
+          <div class="faq-question">
+            Is CafeConnects a dating app?
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-answer">
+            Absolutely not. CafeConnects is a social discovery platform designed for building genuine friendships, professional connections, and community. While you may organically develop any kind of relationship, our design philosophy is rooted in casual, interest-based connections — not romantic pursuit.
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <div class="faq-question">
+            Is my location being tracked or stored?
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-answer">
+            Never stored long-term. Your location is only active in real-time when the app is open, held temporarily in a cache for matching, and deleted the moment you close the app. We never build a historical record of where you've been. Your café check-in is anonymised.
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <div class="faq-question">
+            Why can't I see photos immediately?
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-answer">
+            Photos unlock only after a mutual poke — when both parties have expressed interest. This is a deliberate design choice to ensure connections are based on shared interests and genuine curiosity, not appearance. It creates a much healthier dynamic and reduces superficial judgement.
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <div class="faq-question">
+            What is a "Poke" exactly?
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-answer">
+            A Poke is a low-pressure signal of interest — like a gentle tap on the shoulder. It says "hey, I noticed you're here and our interests seem to align." There's no obligation for the other person to respond. It's designed to be friendly and non-invasive.
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <div class="faq-question">
+            How does the 3-poke system work?
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-answer">
+            Each visit builds the connection naturally: Poke 1 (mutual interest confirmed, ephemeral chat opens), Poke 2 (deeper engagement, connection strengthens), Poke 3 (full unlock — persistent chat, contact sharing enabled). This gradual progression mirrors how real friendships form organically over time.
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <div class="faq-question">
+            Which cafés in Bangalore are supported?
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-answer">
+            We currently have 120+ partner cafés across Indiranagar, Koramangala, HSR Layout, Whitefield, and more. See our full Bangalore café map for the complete list with ratings, timings, and categories. New cafés join every week.
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <div class="faq-question">
+            Is the app free to use?
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-answer">
+            Yes — CafeConnects is free to download and use. We offer a Premium tier (₹99/month) that unlocks additional features like extended poke range, priority visibility, and advanced interest filters. All core connection features are available for free.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- DOWNLOAD                                -->
+  <!-- ═══════════════════════════════════════ -->
+  <section class="download-section" id="download">
+    <div class="container">
+      <div class="download-inner reveal">
+        <div class="download-content">
+          <div class="eyebrow" style="background:rgba(255,255,255,0.15);color:rgba(255,255,255,0.9)">
+            <span class="eyebrow-dot" style="background:#fff"></span>Get Started Free
+          </div>
+          <h2>Start connecting at your favourite café today.</h2>
+          <p>Download CafeConnects and discover the people sitting just a few tables away from you.</p>
+          <div class="app-buttons">
+            <a href="#" class="app-btn">
+              <span class="app-btn-icon">🍎</span>
+              <span class="app-btn-text">
+                <small>Download on the</small>
+                <strong>App Store</strong>
+              </span>
+            </a>
+            <a href="#" class="app-btn">
+              <span class="app-btn-icon">▶</span>
+              <span class="app-btn-text">
+                <small>Get it on</small>
+                <strong>Google Play</strong>
+              </span>
+            </a>
+          </div>
+          <p style="color:rgba(255,255,255,0.45);font-size:13px;margin-top:20px;">
+            Free to download · Available on iOS & Android · Bangalore-first
+          </p>
+        </div>
+
+        <div class="download-visual">
+          <div class="hero-phone" style="position:relative;transform:none;left:auto;top:auto;width:240px;height:480px;animation:float 5s ease-in-out infinite;">
+            <div class="phone-content" style="background:#FFF8F3">
+              <div class="phone-header" style="padding-top:52px;">
+                <h4>☕ Match Unlocked!</h4>
+                <p>You've made 3 mutual connections</p>
+              </div>
+              <div style="padding:20px;text-align:center;">
+                <div style="width:80px;height:80px;border-radius:50%;background:var(--grad-warm);margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:36px;box-shadow:0 8px 24px rgba(62,39,35,0.3)">🎉</div>
+                <h3 style="font-size:16px;color:var(--espresso);margin-bottom:8px">Congratulations!</h3>
+                <p style="font-size:12px;color:var(--text-muted);line-height:1.5">You and Arjun have connected 3 times at Blue Tokai. Chat is now unlocked!</p>
+                <div style="background:var(--espresso);color:#fff;border-radius:20px;padding:10px 20px;font-size:12px;font-weight:700;margin-top:16px;display:inline-block;">Start Chatting →</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- NEWSLETTER                              -->
+  <!-- ═══════════════════════════════════════ -->
+  <section class="newsletter-section">
+    <div class="container">
+      <div class="newsletter-inner reveal">
+        <div class="eyebrow text-center" style="justify-content:center"><span class="eyebrow-dot"></span>Stay Updated</div>
+        <h2 class="display-sm" style="margin-bottom:12px">Get café & connection stories</h2>
+        <p style="color:var(--text-muted);font-size:16px">Monthly digest of connection stories, new café partners, and community events. No spam, ever.</p>
+        <form class="newsletter-form" data-form="newsletter" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="f829e437-bf4c-4989-a103-a09cf7e86753" />
+          <input type="hidden" name="subject" value="Newsletter Signup — CafeConnects" />
+          <input type="hidden" name="from_name" value="CafeConnects Website" />
+          <input type="hidden" name="redirect" value="false" />
+          <input type="checkbox" name="botcheck" style="display:none" />
+          <input type="email" name="email" class="form-input" placeholder="your@email.com" required />
+          <button type="submit" class="btn btn-primary">Subscribe</button>
+        </form>
+        <p style="font-size:12px;color:var(--text-light);margin-top:12px">
+          By subscribing you agree to our <a href="privacy-policy.html" style="color:var(--coffee)">Privacy Policy</a>. Unsubscribe anytime.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" id="contact">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <div class="logo-icon"></div>
+            CafeConnects
+          </a>
+          <p class="footer-desc mt-16">
+            Building meaningful human connections over great coffee.
+            Real people. Real cafés. Real conversations.
+            Bangalore's first café-based social discovery platform.
+          </p>
+          <p class="footer-desc" style="margin-bottom:0">
+            📧 <a href="mailto:hello@cafeconnects.in" style="color:rgba(255,255,255,0.55)">hello@cafeconnects.in</a>
+          </p>
+          <div class="footer-social mt-24">
+            <a href="#" class="social-icon" aria-label="Instagram">📸</a>
+            <a href="#" class="social-icon" aria-label="Twitter">🐦</a>
+            <a href="#" class="social-icon" aria-label="LinkedIn">💼</a>
+            <a href="#" class="social-icon" aria-label="YouTube">▶️</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Product</h4>
+          <ul class="footer-links">
+            <li><a href="product.html" class="footer-link">How It Works</a></li>
+            <li><a href="product.html#features" class="footer-link">Features</a></li>
+            <li><a href="safety.html" class="footer-link">Safety</a></li>
+            <li><a href="#download" class="footer-link">Download App</a></li>
+            <li><a href="#faq" class="footer-link">FAQ</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul class="footer-links">
+            <li><a href="blog.html" class="footer-link">Blog</a></li>
+            <li><a href="careers.html" class="footer-link">Careers</a></li>
+            <li><a href="collaborations.html" class="footer-link">Collaborations</a></li>
+            <li><a href="for-cafes.html" class="footer-link">For Cafes</a></li>
+            <li><a href="#contact" class="footer-link">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <ul class="footer-links">
+            <li><a href="bangalore-cafes.html" class="footer-link">Bangalore Cafes</a></li>
+            <li><a href="blog.html" class="footer-link">Stories</a></li>
+            <li><a href="safety.html" class="footer-link">Safety Guide</a></li>
+            <li><a href="for-cafes.html" class="footer-link">Café Partners</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul class="footer-links">
+            <li><a href="privacy-policy.html" class="footer-link">Privacy Policy</a></li>
+            <li><a href="terms.html" class="footer-link">Terms of Service</a></li>
+            <li><a href="refund-policy.html" class="footer-link">Refund Policy</a></li>
+          </ul>
+          <div style="margin-top:32px">
+            <span class="badge badge-green">🇮🇳 Made in Bangalore</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2026 CafeConnects. All rights reserved. Built with ☕ in Bangalore.</p>
+        <div class="footer-legal">
+          <a href="privacy-policy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+          <a href="refund-policy.html">Refunds</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="shared.js"></script>
+</body>
+</html>

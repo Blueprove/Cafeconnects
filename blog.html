@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog — CafeConnects</title>
+  <meta name="description" content="Stories, insights, and ideas about meaningful connection, café culture, and the future of social interaction." />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .page-hero { background:var(--cream); padding:160px 0 80px; position:relative; overflow:hidden; }
+    .page-hero-bg { position:absolute; inset:0; background:radial-gradient(ellipse 60% 60% at 70% 50%, rgba(247,216,216,0.5) 0%, transparent 60%); }
+    .page-hero-dots { position:absolute; inset:0; background-image:radial-gradient(circle, rgba(93,64,55,0.05) 1px, transparent 1px); background-size:28px 28px; }
+
+    .blog-section { background:var(--white); }
+
+    /* Featured post */
+    .blog-featured { display:grid; grid-template-columns:1.4fr 1fr; gap:48px; align-items:center; margin-bottom:64px; background:var(--cream); border-radius:var(--radius-xl); overflow:hidden; border:1px solid rgba(215,204,200,0.5); }
+    .blog-featured-image { height:400px; background:linear-gradient(135deg, var(--espresso) 0%, var(--coffee) 100%); display:flex; align-items:center; justify-content:center; font-size:80px; position:relative; overflow:hidden; }
+    .blog-featured-image::before { content:''; position:absolute; inset:0; background:radial-gradient(circle at 30% 70%, rgba(247,216,216,0.15), transparent); }
+    .blog-featured-image .img-emoji { position:relative; z-index:1; }
+    .blog-featured-content { padding:48px 48px 48px 0; }
+    .blog-featured-content .eyebrow { margin-bottom:16px; }
+    .blog-featured-content h2 { font-size:32px; font-weight:800; color:var(--espresso); margin-bottom:16px; line-height:1.2; }
+    .blog-featured-content p { font-size:16px; color:var(--text-secondary); line-height:1.7; margin-bottom:24px; }
+    .blog-meta { display:flex; align-items:center; gap:16px; margin-bottom:16px; flex-wrap:wrap; }
+    .blog-author { display:flex; align-items:center; gap:8px; }
+    .blog-avatar { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:700; color:var(--white); background:var(--grad-warm); flex-shrink:0; }
+    .blog-author-name { font-size:13px; font-weight:600; color:var(--espresso); }
+    .blog-date { font-size:12px; color:var(--text-muted); }
+    .blog-read-time { font-size:12px; color:var(--text-muted); background:var(--rose); padding:3px 10px; border-radius:var(--radius-full); }
+
+    /* Blog grid */
+    .blog-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:32px; }
+    .blog-card { background:var(--white); border-radius:var(--radius-xl); border:1px solid rgba(215,204,200,0.5); overflow:hidden; box-shadow:var(--shadow-sm); transition:all 0.3s var(--ease-smooth); }
+    .blog-card:hover { box-shadow:var(--shadow-lg); transform:translateY(-6px); border-color:var(--rose); }
+    .blog-card-image { height:200px; display:flex; align-items:center; justify-content:center; font-size:56px; position:relative; overflow:hidden; }
+    .blog-card-body { padding:28px; }
+    .blog-card-body h3 { font-size:19px; font-weight:700; color:var(--espresso); margin-bottom:10px; line-height:1.3; }
+    .blog-card-body p  { font-size:14px; color:var(--text-muted); line-height:1.65; margin-bottom:20px; }
+    .blog-card-footer { display:flex; align-items:center; justify-content:space-between; }
+    .read-more { font-size:13px; font-weight:700; color:var(--coffee); }
+    .read-more:hover { color:var(--espresso); }
+
+    /* Categories */
+    .categories { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:48px; }
+    .cat-btn { padding:8px 18px; border-radius:var(--radius-full); font-size:13px; font-weight:600; cursor:pointer; transition:all 0.2s; background:var(--cream); color:var(--coffee); border:1px solid var(--latte); }
+    .cat-btn.active, .cat-btn:hover { background:var(--espresso); color:var(--white); border-color:var(--espresso); }
+
+    /* Newsletter inline */
+    .blog-newsletter { background:var(--espresso); border-radius:var(--radius-xl); padding:48px; text-align:center; margin-top:80px; }
+    .blog-newsletter h3 { color:var(--white); font-size:28px; margin-bottom:12px; }
+    .blog-newsletter p  { color:rgba(255,255,255,0.6); margin-bottom:24px; }
+    .blog-newsletter-form { display:flex; gap:12px; max-width:480px; margin:0 auto; }
+
+    @media (max-width:1024px) { .blog-grid{grid-template-columns:repeat(2,1fr)} .blog-featured{grid-template-columns:1fr} }
+    @media (max-width:768px) { .blog-grid{grid-template-columns:1fr} .blog-featured-content{padding:32px} .blog-featured-image{height:240px} .blog-newsletter-form{flex-direction:column} }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar" id="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="logo"><div class="logo-icon"></div>CafeConnects</a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="product.html" class="nav-link">Product</a>
+        <a href="for-cafes.html" class="nav-link">For Cafes</a>
+        <a href="blog.html" class="nav-link active">Blog</a>
+        <a href="bangalore-cafes.html" class="nav-link">Bangalore Cafes</a>
+        <div class="nav-dropdown">
+          <a href="#" class="nav-link">More ▾</a>
+          <div class="nav-dropdown-menu">
+            <a href="careers.html" class="nav-dropdown-item">Careers</a>
+            <a href="collaborations.html" class="nav-dropdown-item">Collaborations</a>
+            <a href="safety.html" class="nav-dropdown-item">Safety</a>
+            <a href="privacy-policy.html" class="nav-dropdown-item">Privacy Policy</a>
+            <a href="terms.html" class="nav-dropdown-item">Terms</a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-cta">
+        <a href="for-cafes.html" class="btn-nav">Partner With Us</a>
+        <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobile-menu">
+    <button class="mobile-close" id="mobile-close">✕</button>
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="product.html" class="nav-link">Product</a>
+    <a href="for-cafes.html" class="nav-link">For Cafes</a>
+    <a href="blog.html" class="nav-link active">Blog</a>
+    <a href="bangalore-cafes.html" class="nav-link">Bangalore Cafes</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-dots"></div>
+    <div class="container">
+      <div style="position:relative;z-index:2;max-width:600px">
+        <div class="eyebrow reveal"><span class="eyebrow-dot"></span>The CafeConnects Blog</div>
+        <h1 class="display-lg reveal" style="color:var(--espresso)">Stories About Connection, Coffee & Community.</h1>
+        <p class="body-lg reveal reveal-delay-1" style="color:var(--text-muted)">Ideas on meaningful interactions, café culture, digital wellbeing, and what it means to build genuine relationships in a hyper-connected world.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOG -->
+  <section class="blog-section section">
+    <div class="container">
+
+      <!-- Category filters -->
+      <div class="categories reveal">
+        <button class="cat-btn active">All Posts</button>
+        <button class="cat-btn">Connection</button>
+        <button class="cat-btn">Café Culture</button>
+        <button class="cat-btn">Technology</button>
+        <button class="cat-btn">Safety</button>
+        <button class="cat-btn">Community</button>
+      </div>
+
+      <!-- Featured Post -->
+      <div class="blog-featured reveal">
+        <div class="blog-featured-image">
+          <span class="img-emoji">🤝</span>
+        </div>
+        <div class="blog-featured-content">
+          <div class="eyebrow"><span class="eyebrow-dot"></span>Featured · Connection</div>
+          <h2>Why Meaningful Connections Happen Better Offline</h2>
+          <div class="blog-meta">
+            <div class="blog-author">
+              <div class="blog-avatar">R</div>
+              <span class="blog-author-name">Rohan Mehta</span>
+            </div>
+            <span class="blog-date">June 10, 2026</span>
+            <span class="blog-read-time">6 min read</span>
+          </div>
+          <p>Research consistently shows that face-to-face interactions create stronger emotional bonds than digital ones. When you're physically present with someone — sharing a space, making eye contact, laughing over the same espresso — your brain does something extraordinary. It mirrors theirs. You synchronise...</p>
+          <div>
+            <span class="tag">Connection</span>
+            <span class="tag" style="margin-left:6px">Psychology</span>
+            <span class="tag" style="margin-left:6px">Research</span>
+          </div>
+          <a href="#" class="btn btn-primary mt-24">Read Article →</a>
+        </div>
+      </div>
+
+      <!-- Blog Grid -->
+      <div class="blog-grid">
+
+        <!-- Article 2 -->
+        <div class="blog-card reveal">
+          <div class="blog-card-image" style="background:linear-gradient(135deg, #5D4037, #8D6E63)">
+            ☕
+          </div>
+          <div class="blog-card-body">
+            <div class="blog-meta" style="margin-bottom:12px">
+              <span class="blog-date">June 5, 2026</span>
+              <span class="blog-read-time">5 min read</span>
+            </div>
+            <div class="eyebrow" style="margin-bottom:10px;font-size:10px"><span class="eyebrow-dot"></span>Café Culture</div>
+            <h3>Why Cafés Are Becoming Community Spaces</h3>
+            <p>The third place — a concept coined by sociologist Ray Oldenburg — describes spaces that aren't home, aren't work, but are essential to social life. Cafés are reclaiming this role in cities like Bangalore in a profound way.</p>
+            <div class="blog-card-footer">
+              <div class="blog-author">
+                <div class="blog-avatar" style="width:28px;height:28px;font-size:12px">P</div>
+                <span class="blog-author-name" style="font-size:12px">Priya Nair</span>
+              </div>
+              <a href="#" class="read-more">Read →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Article 3 -->
+        <div class="blog-card reveal reveal-delay-1">
+          <div class="blog-card-image" style="background:linear-gradient(135deg, #BF360C, #E64A19)">
+            📱
+          </div>
+          <div class="blog-card-body">
+            <div class="blog-meta" style="margin-bottom:12px">
+              <span class="blog-date">May 28, 2026</span>
+              <span class="blog-read-time">8 min read</span>
+            </div>
+            <div class="eyebrow" style="margin-bottom:10px;font-size:10px"><span class="eyebrow-dot"></span>Technology</div>
+            <h3>The Problem With Swipe Culture</h3>
+            <p>Millions of swipes happen every day on dating and social apps. Yet loneliness is at an all-time high. How did we get here, and what does it tell us about the design philosophy of modern social platforms?</p>
+            <div class="blog-card-footer">
+              <div class="blog-author">
+                <div class="blog-avatar" style="width:28px;height:28px;font-size:12px">A</div>
+                <span class="blog-author-name" style="font-size:12px">Aditya Kumar</span>
+              </div>
+              <a href="#" class="read-more">Read →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Article 4 -->
+        <div class="blog-card reveal reveal-delay-2">
+          <div class="blog-card-image" style="background:linear-gradient(135deg, #1A237E, #283593)">
+            💡
+          </div>
+          <div class="blog-card-body">
+            <div class="blog-meta" style="margin-bottom:12px">
+              <span class="blog-date">May 20, 2026</span>
+              <span class="blog-read-time">7 min read</span>
+            </div>
+            <div class="eyebrow" style="margin-bottom:10px;font-size:10px"><span class="eyebrow-dot"></span>Technology</div>
+            <h3>How Technology Can Encourage Real Conversations</h3>
+            <p>Technology isn't inherently isolating — it depends entirely on how it's designed. Here's how proximity-first design, ephemeral data, and interest matching can build a platform that drives people toward each other, not away.</p>
+            <div class="blog-card-footer">
+              <div class="blog-author">
+                <div class="blog-avatar" style="width:28px;height:28px;font-size:12px">S</div>
+                <span class="blog-author-name" style="font-size:12px">Sneha Rao</span>
+              </div>
+              <a href="#" class="read-more">Read →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Article 5 -->
+        <div class="blog-card reveal">
+          <div class="blog-card-image" style="background:linear-gradient(135deg, #1B5E20, #2E7D32)">
+            🛡️
+          </div>
+          <div class="blog-card-body">
+            <div class="blog-meta" style="margin-bottom:12px">
+              <span class="blog-date">May 12, 2026</span>
+              <span class="blog-read-time">6 min read</span>
+            </div>
+            <div class="eyebrow" style="margin-bottom:10px;font-size:10px"><span class="eyebrow-dot"></span>Safety</div>
+            <h3>Building Safer Social Experiences</h3>
+            <p>Safety in social platforms isn't just about blocking bad actors — it's about designing experiences where harmful behaviour is structurally discouraged from the start. Here's our approach and the philosophy behind it.</p>
+            <div class="blog-card-footer">
+              <div class="blog-author">
+                <div class="blog-avatar" style="width:28px;height:28px;font-size:12px">V</div>
+                <span class="blog-author-name" style="font-size:12px">Vikram Shah</span>
+              </div>
+              <a href="#" class="read-more">Read →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Placeholder cards -->
+        <div class="blog-card reveal reveal-delay-1" style="display:flex;align-items:center;justify-content:center;min-height:300px;background:var(--cream);border-style:dashed">
+          <div style="text-align:center;color:var(--text-light);padding:32px">
+            <div style="font-size:40px;margin-bottom:12px">✍️</div>
+            <p style="font-size:14px;font-weight:600">More stories coming soon</p>
+            <p style="font-size:13px;margin-top:6px">Subscribe to be notified</p>
+          </div>
+        </div>
+
+        <div class="blog-card reveal reveal-delay-2" style="background:var(--espresso);border-color:transparent">
+          <div style="padding:36px;height:100%;display:flex;flex-direction:column;justify-content:center">
+            <p style="color:rgba(255,255,255,0.5);font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:16px">Newsletter</p>
+            <h3 style="color:var(--white);font-size:22px;margin-bottom:12px">Get stories in your inbox</h3>
+            <p style="color:rgba(255,255,255,0.6);font-size:14px;margin-bottom:24px">Monthly digest of connection stories, café spotlights, and community news.</p>
+            <form data-form="blog-newsletter" action="https://api.web3forms.com/submit" method="POST" style="display:flex;flex-direction:column;gap:10px">
+              <input type="hidden" name="access_key" value="f829e437-bf4c-4989-a103-a09cf7e86753" />
+              <input type="hidden" name="subject" value="Newsletter Signup (Blog) — CafeConnects" />
+              <input type="hidden" name="from_name" value="CafeConnects Website" />
+              <input type="hidden" name="redirect" value="false" />
+              <input type="checkbox" name="botcheck" style="display:none" />
+              <input type="email" name="email" class="form-input" placeholder="your@email.com" required style="background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.2);color:var(--white);" />
+              <button type="submit" class="btn btn-rose">Subscribe →</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" id="contact">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo"><div class="logo-icon"></div>CafeConnects</a>
+          <p class="footer-desc mt-16">Real people. Real cafés. Real conversations.</p>
+          <p class="footer-desc"><a href="mailto:hello@cafeconnects.in" style="color:rgba(255,255,255,0.55)">📧 hello@cafeconnects.in</a></p>
+          <div class="footer-social mt-24"><a href="#" class="social-icon">📸</a><a href="#" class="social-icon">🐦</a><a href="#" class="social-icon">💼</a></div>
+        </div>
+        <div class="footer-col"><h4>Product</h4><ul class="footer-links"><li><a href="product.html" class="footer-link">How It Works</a></li><li><a href="safety.html" class="footer-link">Safety</a></li></ul></div>
+        <div class="footer-col"><h4>Company</h4><ul class="footer-links"><li><a href="blog.html" class="footer-link">Blog</a></li><li><a href="careers.html" class="footer-link">Careers</a></li><li><a href="for-cafes.html" class="footer-link">For Cafes</a></li></ul></div>
+        <div class="footer-col"><h4>Resources</h4><ul class="footer-links"><li><a href="bangalore-cafes.html" class="footer-link">Bangalore Cafes</a></li></ul></div>
+        <div class="footer-col"><h4>Legal</h4><ul class="footer-links"><li><a href="privacy-policy.html" class="footer-link">Privacy Policy</a></li><li><a href="terms.html" class="footer-link">Terms</a></li></ul></div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2026 CafeConnects. Built with ☕ in Bangalore.</p>
+        <div class="footer-legal"><a href="privacy-policy.html">Privacy</a><a href="terms.html">Terms</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="shared.js"></script>
+  <script>
+    document.querySelectorAll('.cat-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>

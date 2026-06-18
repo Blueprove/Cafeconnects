@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Careers — CafeConnects</title>
+  <meta name="description" content="Join CafeConnects — help us build the future of meaningful human connection. Open roles in Bangalore." />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .page-hero { background:var(--cream); padding:160px 0 100px; position:relative; overflow:hidden; }
+    .page-hero-bg { position:absolute; inset:0; background:radial-gradient(ellipse 70% 60% at 80% 50%, rgba(247,216,216,0.5) 0%, transparent 60%); }
+    .page-hero-dots { position:absolute; inset:0; background-image:radial-gradient(circle, rgba(93,64,55,0.05) 1px, transparent 1px); background-size:28px 28px; }
+
+    .values-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; }
+    .value-card { text-align:center; padding:40px 24px; background:var(--cream); border-radius:var(--radius-xl); border:1px solid rgba(215,204,200,0.5); transition:all 0.3s var(--ease-smooth); }
+    .value-card:hover { box-shadow:var(--shadow-md); transform:translateY(-4px); border-color:var(--rose); }
+    .value-icon { font-size:40px; margin-bottom:16px; }
+    .value-card h3 { font-size:17px; font-weight:700; color:var(--espresso); margin-bottom:8px; }
+    .value-card p  { font-size:13px; color:var(--text-muted); line-height:1.6; }
+
+    /* Job Listings */
+    .jobs-section { background:var(--cream); }
+    .job-card { background:var(--white); border-radius:var(--radius-xl); overflow:hidden; border:1px solid rgba(215,204,200,0.5); box-shadow:var(--shadow-sm); margin-bottom:24px; transition:all 0.3s var(--ease-smooth); }
+    .job-card:hover { box-shadow:var(--shadow-md); }
+    .job-header { padding:32px 36px; display:flex; align-items:center; justify-content:space-between; cursor:pointer; }
+    .job-info h3 { font-size:20px; font-weight:700; color:var(--espresso); margin-bottom:8px; }
+    .job-meta { display:flex; gap:12px; flex-wrap:wrap; }
+    .job-tag { font-size:12px; font-weight:600; padding:4px 12px; border-radius:var(--radius-full); }
+    .job-toggle { width:40px; height:40px; border-radius:50%; background:var(--cream); border:1px solid var(--latte); display:flex; align-items:center; justify-content:center; font-size:20px; flex-shrink:0; transition:all 0.3s var(--ease-spring); color:var(--espresso); }
+    .job-card.open .job-toggle { background:var(--espresso); color:var(--white); transform:rotate(45deg); }
+    .job-body { max-height:0; overflow:hidden; transition:max-height 0.4s var(--ease-smooth); }
+    .job-card.open .job-body { max-height:1200px; }
+    .job-body-inner { padding:0 36px 36px; }
+    .job-section-title { font-size:14px; font-weight:700; color:var(--espresso); margin:20px 0 10px; text-transform:uppercase; letter-spacing:0.06em; }
+    .job-body ul { list-style:none; display:flex; flex-direction:column; gap:8px; }
+    .job-body ul li { display:flex; align-items:flex-start; gap:10px; font-size:14px; color:var(--text-secondary); }
+    .job-body ul li::before { content:'•'; color:var(--coffee); font-weight:700; flex-shrink:0; margin-top:1px; }
+
+    /* Application Form */
+    .apply-section { background:var(--white); }
+    .apply-card { background:var(--cream); border-radius:var(--radius-xl); padding:64px; border:1px solid rgba(215,204,200,0.5); max-width:760px; margin:0 auto; }
+    .form-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+
+    /* Benefits */
+    .perks-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+    .perk-item { display:flex; gap:16px; }
+    .perk-icon { font-size:28px; flex-shrink:0; }
+    .perk-text h4 { font-size:15px; font-weight:700; color:var(--espresso); margin-bottom:4px; }
+    .perk-text p  { font-size:13px; color:var(--text-muted); line-height:1.5; }
+
+    @media (max-width:1024px) { .values-grid{grid-template-columns:repeat(2,1fr)} .perks-grid{grid-template-columns:1fr 1fr} }
+    @media (max-width:768px) { .values-grid{grid-template-columns:1fr 1fr} .perks-grid{grid-template-columns:1fr} .apply-card{padding:32px 24px} .form-grid{grid-template-columns:1fr} .job-header{flex-wrap:wrap;gap:16px} }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar" id="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="logo"><div class="logo-icon"></div>CafeConnects</a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="product.html" class="nav-link">Product</a>
+        <a href="for-cafes.html" class="nav-link">For Cafes</a>
+        <a href="blog.html" class="nav-link">Blog</a>
+        <a href="bangalore-cafes.html" class="nav-link">Bangalore Cafes</a>
+        <div class="nav-dropdown"><a href="#" class="nav-link">More ▾</a>
+          <div class="nav-dropdown-menu">
+            <a href="careers.html" class="nav-dropdown-item active">Careers</a>
+            <a href="collaborations.html" class="nav-dropdown-item">Collaborations</a>
+            <a href="safety.html" class="nav-dropdown-item">Safety</a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-cta">
+        <a href="#apply" class="btn-nav">Apply Now</a>
+        <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobile-menu">
+    <button class="mobile-close" id="mobile-close">✕</button>
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="careers.html" class="nav-link active">Careers</a>
+    <a href="for-cafes.html" class="nav-link">For Cafes</a>
+    <a href="#apply" class="btn btn-primary mt-24">Apply Now</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-dots"></div>
+    <div class="container">
+      <div style="position:relative;z-index:2;max-width:720px">
+        <div class="eyebrow reveal"><span class="eyebrow-dot"></span>We're Hiring</div>
+        <h1 class="display-lg reveal" style="color:var(--espresso)">Join Us In Building Meaningful Human Connections.</h1>
+        <p class="body-lg reveal reveal-delay-1" style="color:var(--text-muted)">We're a small, passionate team in Bangalore building something genuinely new. If you believe technology should bring people closer together — not keep them staring at screens — you'll fit right in.</p>
+        <div class="flex gap-16 mt-32 reveal reveal-delay-2">
+          <a href="#openings" class="btn btn-primary btn-lg">See Open Roles</a>
+          <a href="#values" class="btn btn-secondary btn-lg">Our Values</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section class="section bg-white" id="values">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="eyebrow"><span class="eyebrow-dot"></span>How we work</div>
+        <h2 class="display-sm">What We Believe In</h2>
+      </div>
+      <div class="values-grid">
+        <div class="value-card reveal">
+          <div class="value-icon">🌱</div>
+          <h3>Build for Humans</h3>
+          <p>Every decision starts with the question: does this make people's lives genuinely better? Not more engaged. Better.</p>
+        </div>
+        <div class="value-card reveal reveal-delay-1">
+          <div class="value-icon">🔒</div>
+          <h3>Privacy by Default</h3>
+          <p>We never collect what we don't need. We never store what we don't have to. Privacy isn't a feature — it's the baseline.</p>
+        </div>
+        <div class="value-card reveal reveal-delay-2">
+          <div class="value-icon">☕</div>
+          <h3>Rooted in Real Life</h3>
+          <p>We spend time in cafés, we talk to people, we test ideas on the street. Our product is grounded in the real world.</p>
+        </div>
+        <div class="value-card reveal reveal-delay-3">
+          <div class="value-icon">🚀</div>
+          <h3>Bias for Action</h3>
+          <p>Small team. High ownership. We ship, learn, iterate. A good idea you execute beats a perfect idea you keep refining.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PERKS -->
+  <section class="section bg-cream">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="eyebrow"><span class="eyebrow-dot"></span>What you get</div>
+        <h2 class="display-sm">Benefits & Perks</h2>
+      </div>
+      <div class="perks-grid">
+        <div class="perk-item reveal">
+          <div class="perk-icon">💰</div>
+          <div class="perk-text"><h4>Competitive Compensation</h4><p>Market-rate salaries plus meaningful equity for early team members.</p></div>
+        </div>
+        <div class="perk-item reveal reveal-delay-1">
+          <div class="perk-icon">☕</div>
+          <div class="perk-text"><h4>Unlimited Coffee Budget</h4><p>We're a café company. Your coffee bill is covered — at any of our 120+ partner cafés.</p></div>
+        </div>
+        <div class="perk-item reveal reveal-delay-2">
+          <div class="perk-icon">🏠</div>
+          <div class="perk-text"><h4>Remote-First Culture</h4><p>Work from wherever you're most productive. We meet in person at cafés — naturally.</p></div>
+        </div>
+        <div class="perk-item reveal">
+          <div class="perk-icon">📚</div>
+          <div class="perk-text"><h4>Learning Budget</h4><p>₹30,000/year for books, courses, conferences, or anything that makes you better at what you do.</p></div>
+        </div>
+        <div class="perk-item reveal reveal-delay-1">
+          <div class="perk-icon">🏥</div>
+          <div class="perk-text"><h4>Health Insurance</h4><p>Full health coverage for you and your family, including dental and vision.</p></div>
+        </div>
+        <div class="perk-item reveal reveal-delay-2">
+          <div class="perk-icon">🌴</div>
+          <div class="perk-text"><h4>Unlimited Leave</h4><p>We trust you to manage your time. Take the time you need to rest and recharge — genuinely.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OPEN ROLES -->
+  <section class="jobs-section section" id="openings">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="eyebrow"><span class="eyebrow-dot"></span>Open Positions</div>
+        <h2 class="display-sm">Current Openings</h2>
+        <p>2 open roles · Bangalore-based · Hybrid</p>
+      </div>
+
+      <!-- Role 1 -->
+      <div class="job-card reveal">
+        <div class="job-header" onclick="toggleJob(this)">
+          <div class="job-info">
+            <h3>VP Customer Success</h3>
+            <div class="job-meta">
+              <span class="job-tag badge badge-green">Full-Time</span>
+              <span class="job-tag badge badge-blue">Bangalore</span>
+              <span class="job-tag badge badge-rose">₹25–45 LPA</span>
+            </div>
+          </div>
+          <div class="job-toggle">+</div>
+        </div>
+        <div class="job-body">
+          <div class="job-body-inner">
+            <p style="font-size:15px;color:var(--text-secondary);line-height:1.7;margin-bottom:16px">We're looking for a seasoned Customer Success leader to own the café partnership experience end-to-end. You'll be the face of CafeConnects to our growing network of café partners, ensuring they see measurable value and become long-term advocates for the platform.</p>
+
+            <p class="job-section-title">Responsibilities</p>
+            <ul>
+              <li>Build and lead a Customer Success team as we scale from 120 to 500+ café partners</li>
+              <li>Develop onboarding playbooks, success metrics, and retention strategies</li>
+              <li>Establish QBR cadence with Tier 2 and Tier 3 café partners</li>
+              <li>Partner with Product to translate café feedback into roadmap priorities</li>
+              <li>Create a café community — events, groups, knowledge sharing — among our partner network</li>
+              <li>Define and own café NPS, churn rate, and expansion revenue targets</li>
+            </ul>
+
+            <p class="job-section-title">Requirements</p>
+            <ul>
+              <li>7+ years in Customer Success, Account Management, or a related role at a B2B SaaS or marketplace</li>
+              <li>3+ years in a leadership role managing CS teams of 5+</li>
+              <li>Deep empathy for small business owners — you understand their constraints and pressures</li>
+              <li>Excellent communicator with strong relationship-building instincts</li>
+              <li>Data-driven: you can build dashboards and extract insights from metrics</li>
+              <li>Bangalore-based or willing to relocate (hybrid schedule)</li>
+            </ul>
+
+            <p class="job-section-title">Benefits</p>
+            <ul>
+              <li>₹25–45 LPA base, depending on experience, plus ESOP</li>
+              <li>Full health insurance (family included)</li>
+              <li>Unlimited coffee at all partner cafés</li>
+              <li>₹30,000/year learning budget</li>
+              <li>Flexible working hours</li>
+            </ul>
+
+            <a href="#apply" class="btn btn-primary mt-24">Apply for This Role →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Role 2 -->
+      <div class="job-card reveal">
+        <div class="job-header" onclick="toggleJob(this)">
+          <div class="job-info">
+            <h3>Marketing & Sales Intern</h3>
+            <div class="job-meta">
+              <span class="job-tag badge badge-amber">Internship</span>
+              <span class="job-tag badge badge-blue">Bangalore</span>
+              <span class="job-tag badge badge-rose">₹15,000–25,000/mo</span>
+            </div>
+          </div>
+          <div class="job-toggle">+</div>
+        </div>
+        <div class="job-body">
+          <div class="job-body-inner">
+            <p style="font-size:15px;color:var(--text-secondary);line-height:1.7;margin-bottom:16px">An exciting opportunity for a driven, creative individual to join the founding team as a Marketing & Sales Intern. You'll own real projects, directly impact growth, and learn how a consumer startup goes from zero to community. This isn't a filing-and-coffee-runs internship.</p>
+
+            <p class="job-section-title">Responsibilities</p>
+            <ul>
+              <li>Support café outreach: identify potential partners, draft pitch emails, schedule demos</li>
+              <li>Create content for Instagram, LinkedIn, and our blog (written and visual)</li>
+              <li>Help organise and promote "Poke Night" events at partner cafés</li>
+              <li>Research Bangalore café scene, competitors, and potential collab partners</li>
+              <li>Gather user testimonials and success stories for marketing collateral</li>
+              <li>Assist with influencer outreach and community building initiatives</li>
+            </ul>
+
+            <p class="job-section-title">Requirements</p>
+            <ul>
+              <li>Currently pursuing or recently completed a degree in Marketing, Business, Communications, or related field</li>
+              <li>Passionate about coffee, community, and Bangalore's startup culture</li>
+              <li>Strong writing skills — you can write a compelling email and a punchy Instagram caption</li>
+              <li>Social media native — you understand what makes content resonate</li>
+              <li>Energetic, self-motivated, and comfortable with ambiguity</li>
+              <li>Available for 3-6 months, minimum 4 days/week (can be hybrid)</li>
+            </ul>
+
+            <p class="job-section-title">What You'll Gain</p>
+            <ul>
+              <li>Real ownership over projects that affect company growth</li>
+              <li>Direct access to founders and a close-knit team</li>
+              <li>Experience building a consumer brand from the ground up</li>
+              <li>Strong letter of recommendation and potential full-time offer</li>
+              <li>Free coffee (obviously)</li>
+            </ul>
+
+            <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:24px">
+              <a href="#apply" class="btn btn-primary">Apply for This Role →</a>
+              <a href="mailto:careers@cafeconnects.in" class="btn btn-secondary">Email Your Application</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPLICATION FORM -->
+  <section class="apply-section section" id="apply">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="eyebrow"><span class="eyebrow-dot"></span>Apply</div>
+        <h2 class="display-sm">Submit Your Application</h2>
+        <p>Tell us who you are. We read every single application personally.</p>
+      </div>
+      <div class="apply-card reveal">
+        <form data-form="job-application" action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data">
+          <input type="hidden" name="access_key" value="f829e437-bf4c-4989-a103-a09cf7e86753" />
+          <input type="hidden" name="subject" value="Job Application — CafeConnects" />
+          <input type="hidden" name="from_name" value="CafeConnects Website" />
+          <input type="hidden" name="redirect" value="false" />
+          <input type="checkbox" name="botcheck" style="display:none" />
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Full Name *</label>
+              <input type="text" name="full_name" class="form-input" placeholder="Your full name" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email Address *</label>
+              <input type="email" name="email" class="form-input" placeholder="your@email.com" required />
+            </div>
+          </div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Phone Number *</label>
+              <input type="tel" name="phone" class="form-input" placeholder="+91 98765 43210" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Role Applying For *</label>
+              <select name="role" class="form-select form-input" required>
+                <option value="">Select a role</option>
+                <option value="VP Customer Success">VP Customer Success</option>
+                <option value="Marketing & Sales Intern">Marketing & Sales Intern</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Upload Resume * <span style="font-size:11px;color:var(--text-muted)">(PDF or DOCX, max 5MB)</span></label>
+            <input type="file" name="resume" class="form-input" accept=".pdf,.doc,.docx" required style="padding:10px" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">LinkedIn Profile <span style="font-size:11px;color:var(--text-muted)">(optional)</span></label>
+            <input type="url" name="linkedin" class="form-input" placeholder="https://linkedin.com/in/yourprofile" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Why CafeConnects? *</label>
+            <textarea name="cover_note" class="form-textarea" placeholder="Tell us why you want to work here — what draws you to this mission, this product, and this team. Be honest. We love authenticity." required style="min-height:160px;"></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Additional Links <span style="font-size:11px;color:var(--text-muted)">(portfolio, GitHub, writing samples — optional)</span></label>
+            <input type="text" name="additional_links" class="form-input" placeholder="Links to your work (comma separated)" />
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg w-full">Submit Application →</button>
+          <p style="font-size:12px;color:var(--text-muted);text-align:center;margin-top:12px">We aim to respond to all applications within 5 business days.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" id="contact">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand"><a href="index.html" class="logo"><div class="logo-icon"></div>CafeConnects</a><p class="footer-desc mt-16">Real people. Real cafés. Real conversations.</p><div class="footer-social mt-24"><a href="#" class="social-icon">📸</a><a href="#" class="social-icon">🐦</a><a href="#" class="social-icon">💼</a></div></div>
+        <div class="footer-col"><h4>Product</h4><ul class="footer-links"><li><a href="product.html" class="footer-link">How It Works</a></li><li><a href="safety.html" class="footer-link">Safety</a></li></ul></div>
+        <div class="footer-col"><h4>Company</h4><ul class="footer-links"><li><a href="blog.html" class="footer-link">Blog</a></li><li><a href="careers.html" class="footer-link">Careers</a></li></ul></div>
+        <div class="footer-col"><h4>Resources</h4><ul class="footer-links"><li><a href="bangalore-cafes.html" class="footer-link">Bangalore Cafes</a></li></ul></div>
+        <div class="footer-col"><h4>Legal</h4><ul class="footer-links"><li><a href="privacy-policy.html" class="footer-link">Privacy</a></li><li><a href="terms.html" class="footer-link">Terms</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><p class="footer-copyright">© 2026 CafeConnects. Built with ☕ in Bangalore.</p></div>
+    </div>
+  </footer>
+
+  <script src="shared.js"></script>
+  <script>
+    function toggleJob(header) {
+      const card = header.parentElement;
+      const isOpen = card.classList.contains('open');
+      document.querySelectorAll('.job-card').forEach(c => c.classList.remove('open'));
+      if (!isOpen) card.classList.add('open');
+    }
+  </script>
+</body>
+</html>

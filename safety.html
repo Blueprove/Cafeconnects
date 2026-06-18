@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Safety — CafeConnects</title>
+  <meta name="description" content="CafeConnects Safety Centre — how we keep every interaction safe, private, and respectful." />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .page-hero { background:linear-gradient(135deg,#1B5E20,#2E7D32); padding:160px 0 100px; position:relative; overflow:hidden; }
+    .page-hero-dots { position:absolute; inset:0; background-image:radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px); background-size:28px 28px; }
+    .safety-pillars { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+    .safety-pillar { background:var(--white); border-radius:var(--radius-xl); padding:40px 32px; border:1px solid rgba(215,204,200,0.5); box-shadow:var(--shadow-sm); transition:all 0.3s var(--ease-smooth); }
+    .safety-pillar:hover { box-shadow:var(--shadow-lg); transform:translateY(-6px); }
+    .pillar-icon { font-size:44px; margin-bottom:20px; }
+    .safety-pillar h3 { font-size:20px; font-weight:700; color:var(--espresso); margin-bottom:12px; }
+    .safety-pillar p  { font-size:14px; color:var(--text-muted); line-height:1.65; }
+    .safety-tips { display:grid; grid-template-columns:1fr 1fr; gap:32px; }
+    .tip-section h3 { font-size:20px; font-weight:700; color:var(--espresso); margin-bottom:20px; display:flex; align-items:center; gap:10px; }
+    .tip-list { display:flex; flex-direction:column; gap:12px; }
+    .tip-item { background:var(--white); border-radius:var(--radius-md); padding:16px 20px; border:1px solid rgba(215,204,200,0.5); border-left:4px solid var(--coffee); font-size:14px; color:var(--text-secondary); line-height:1.6; }
+    .emergency-section { background:linear-gradient(135deg,#B71C1C,#C62828); border-radius:var(--radius-xl); padding:64px; text-align:center; }
+    .emergency-section h2 { color:var(--white); font-size:32px; margin-bottom:12px; }
+    .emergency-section p  { color:rgba(255,255,255,0.7); margin-bottom:32px; }
+    .emergency-contacts { display:flex; gap:24px; justify-content:center; flex-wrap:wrap; }
+    .emergency-contact { background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.2); border-radius:var(--radius-lg); padding:20px 28px; text-align:center; }
+    .emergency-contact .num { font-family:var(--font-display); font-size:28px; font-weight:800; color:var(--white); }
+    .emergency-contact .label { font-size:13px; color:rgba(255,255,255,0.6); margin-top:4px; }
+    @media(max-width:1024px) { .safety-pillars{grid-template-columns:repeat(2,1fr)} .safety-tips{grid-template-columns:1fr} }
+    @media(max-width:768px) { .safety-pillars{grid-template-columns:1fr} .emergency-section{padding:40px 24px} .emergency-contacts{flex-direction:column;align-items:center} }
+  </style>
+</head>
+<body>
+  <nav class="navbar" id="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="logo"><div class="logo-icon"></div>CafeConnects</a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="product.html" class="nav-link">Product</a>
+        <a href="for-cafes.html" class="nav-link">For Cafes</a>
+        <a href="blog.html" class="nav-link">Blog</a>
+        <a href="bangalore-cafes.html" class="nav-link">Bangalore Cafes</a>
+        <div class="nav-dropdown"><a href="#" class="nav-link">More ▾</a>
+          <div class="nav-dropdown-menu">
+            <a href="careers.html" class="nav-dropdown-item">Careers</a>
+            <a href="collaborations.html" class="nav-dropdown-item">Collaborations</a>
+            <a href="safety.html" class="nav-dropdown-item active">Safety</a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-cta">
+        <a href="for-cafes.html" class="btn-nav">Partner With Us</a>
+        <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobile-menu">
+    <button class="mobile-close" id="mobile-close">✕</button>
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="safety.html" class="nav-link active">Safety</a>
+  </div>
+
+  <section class="page-hero">
+    <div class="page-hero-dots"></div>
+    <div class="container">
+      <div style="position:relative;z-index:2;max-width:680px">
+        <div class="eyebrow reveal" style="background:rgba(255,255,255,0.12);color:rgba(255,255,255,0.8)"><span class="eyebrow-dot" style="background:#fff"></span>Safety Centre</div>
+        <h1 class="display-lg reveal" style="color:var(--white)">Your Safety Is Our First Principle.</h1>
+        <p class="body-lg reveal reveal-delay-1" style="color:rgba(255,255,255,0.7)">Every feature on CafeConnects was designed with safety at the foundation. Here's exactly how we protect you — and how you can protect yourself.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SAFETY STATS -->
+  <section class="section bg-white">
+    <div class="container">
+      <div class="stats-grid reveal">
+        <div class="stat-card">
+          <div class="stat-number" style="color:#1B5E20">Zero</div>
+          <div class="stat-label">Reported incidents of harm since launch</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" data-count="100" data-suffix="%">0%</div>
+          <div class="stat-label">Users verified before their first poke</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">&lt;24h</div>
+          <div class="stat-label">Response time for safety reports</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" data-count="94" data-suffix="%">0%</div>
+          <div class="stat-label">Users report feeling safe on our platform</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SAFETY PILLARS -->
+  <section class="section bg-cream">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="eyebrow"><span class="eyebrow-dot"></span>How We Protect You</div>
+        <h2 class="display-sm">Safety Built Into Every Layer</h2>
+      </div>
+      <div class="safety-pillars">
+        <div class="safety-pillar reveal">
+          <div class="pillar-icon">🪪</div>
+          <h3>ID Verification</h3>
+          <p>Every user must verify their identity before sending their first poke. This is mandatory — not optional. We use Onfido's AI-powered verification to confirm government IDs without storing sensitive documents.</p>
+        </div>
+        <div class="safety-pillar reveal reveal-delay-1">
+          <div class="pillar-icon">🖼️</div>
+          <h3>Photos Hidden Until Mutual</h3>
+          <p>Profile photos are never visible until both parties have expressed mutual interest. This prevents appearance-based harassment and ensures connections are built on who someone is — not how they look.</p>
+        </div>
+        <div class="safety-pillar reveal reveal-delay-2">
+          <div class="pillar-icon">📍</div>
+          <h3>Location Privacy Engine</h3>
+          <p>Your precise location is held only in real-time memory, never written to our database. When you close the app, your location is gone. We never build a history of where you've been or when.</p>
+        </div>
+        <div class="safety-pillar reveal reveal-delay-3">
+          <div class="pillar-icon">🚫</div>
+          <h3>Instant Block — Permanent</h3>
+          <p>One tap blocks someone forever. Blocked users can never poke you, see your profile, or contact you — even if they create a new account. Our system links blocks to identity, not just accounts.</p>
+        </div>
+        <div class="safety-pillar reveal reveal-delay-4">
+          <div class="pillar-icon">⭐</div>
+          <h3>Trust Score System</h3>
+          <p>Every user has a Trust Score (0-100) based on their interaction history. Users who receive blocks or reports see their score drop and their visibility reduced. The community self-regulates organically.</p>
+        </div>
+        <div class="safety-pillar reveal reveal-delay-5">
+          <div class="pillar-icon">⚡</div>
+          <h3>Auto-Moderation</h3>
+          <p>A user who receives 3 verified reports within 7 days is automatically suspended pending review. Our moderation team reviews every report within 24 hours and takes action within 48.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SAFETY TIPS -->
+  <section class="section bg-white">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="eyebrow"><span class="eyebrow-dot"></span>Stay Safe</div>
+        <h2 class="display-sm">Tips for Safe, Positive Interactions</h2>
+      </div>
+      <div class="safety-tips">
+        <div class="tip-section reveal">
+          <h3>☕ Meeting in Person</h3>
+          <div class="tip-list">
+            <div class="tip-item">Always meet for the first time in a public café — which, by design, is exactly where CafeConnects connections happen.</div>
+            <div class="tip-item">You don't have to identify yourself. You can make eye contact and smile, or simply enjoy knowing someone interesting is nearby.</div>
+            <div class="tip-item">Never feel pressured to reveal your identity until you're genuinely comfortable doing so.</div>
+            <div class="tip-item">Trust your gut. If something feels off about an interaction, block immediately. No explanation needed.</div>
+            <div class="tip-item">Let a friend or family member know you're at the café if you plan to introduce yourself to someone.</div>
+          </div>
+        </div>
+        <div class="tip-section reveal reveal-delay-1">
+          <h3>🔒 Privacy & Boundaries</h3>
+          <div class="tip-list">
+            <div class="tip-item">Never share personal contact info (phone, social media) until the chat is fully unlocked after 3 mutual pokes — and only if you want to.</div>
+            <div class="tip-item">You don't owe anyone a poke back. Ignoring a poke is completely normal and there are no notifications that tell someone you've seen their poke.</div>
+            <div class="tip-item">Your profile only shows what you choose to share. Age, pronouns, bio, and interests are all under your control.</div>
+            <div class="tip-item">Respect is not optional. Inappropriate chat messages should be reported immediately — we act fast.</div>
+            <div class="tip-item">You can delete your account and all associated data at any time from Settings. No cooling-off period.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMUNITY STANDARDS -->
+  <section class="section bg-cream">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="eyebrow"><span class="eyebrow-dot"></span>Our Standards</div>
+        <h2 class="display-sm">Community Standards</h2>
+        <p>CafeConnects is a community built on respect, curiosity, and kindness. These standards are non-negotiable.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card reveal">
+          <div class="feature-icon">🤝</div>
+          <h3>Respect Everyone</h3>
+          <p>Every person on this platform deserves to be treated with dignity. Harassment, discrimination, or disrespectful behaviour of any kind results in immediate suspension.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-1">
+          <div class="feature-icon">🚫</div>
+          <h3>No Unsolicited Content</h3>
+          <p>Do not send inappropriate images, offensive messages, or unsolicited advances. Chat is for friendly, interest-based conversation — not anything else.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-2">
+          <div class="feature-icon">✅</div>
+          <h3>Be Authentically You</h3>
+          <p>No fake profiles, no impersonation, no catfishing. Your profile should represent who you genuinely are. Misrepresentation is grounds for permanent ban.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon">🌍</div>
+          <h3>Embrace Diversity</h3>
+          <p>Our community includes people of all backgrounds, identities, and beliefs. Discrimination based on gender, religion, caste, sexuality, or any other identity is absolutely prohibited.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-1">
+          <div class="feature-icon">🔔</div>
+          <h3>Report, Don't Retaliate</h3>
+          <p>If someone violates these standards, report them immediately in-app. Do not engage, argue, or retaliate. Our team will handle it.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-2">
+          <div class="feature-icon">☕</div>
+          <h3>Respect Café Space</h3>
+          <p>Be a good guest in the cafés where you connect. Treat staff with kindness, be mindful of space, and remember you're representing our community.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW TO REPORT -->
+  <section class="section bg-white">
+    <div class="container" style="max-width:800px">
+      <div class="section-header reveal">
+        <div class="eyebrow"><span class="eyebrow-dot"></span>Reporting</div>
+        <h2 class="display-sm">How to Report Abuse</h2>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:24px">
+        <div class="step-card reveal" style="background:var(--cream);border-radius:var(--radius-lg);padding:28px 32px;border:1px solid rgba(215,204,200,0.5);display:grid;grid-template-columns:64px 1fr;gap:20px;align-items:start">
+          <div class="step-number" style="width:48px;height:48px;font-size:20px;flex-shrink:0">1</div>
+          <div><h3 style="font-size:17px;margin-bottom:6px">Tap the profile or chat</h3><p style="font-size:14px;color:var(--text-muted)">Open the profile or conversation of the person you want to report. You can do this from anywhere in the app.</p></div>
+        </div>
+        <div class="step-card reveal reveal-delay-1" style="background:var(--cream);border-radius:var(--radius-lg);padding:28px 32px;border:1px solid rgba(215,204,200,0.5);display:grid;grid-template-columns:64px 1fr;gap:20px;align-items:start">
+          <div class="step-number" style="width:48px;height:48px;font-size:20px;flex-shrink:0">2</div>
+          <div><h3 style="font-size:17px;margin-bottom:6px">Tap the ⋯ menu → "Report"</h3><p style="font-size:14px;color:var(--text-muted)">Select the type of issue: harassment, inappropriate content, spam, fake profile, or unsafe behaviour.</p></div>
+        </div>
+        <div class="step-card reveal reveal-delay-2" style="background:var(--cream);border-radius:var(--radius-lg);padding:28px 32px;border:1px solid rgba(215,204,200,0.5);display:grid;grid-template-columns:64px 1fr;gap:20px;align-items:start">
+          <div class="step-number" style="width:48px;height:48px;font-size:20px;flex-shrink:0">3</div>
+          <div><h3 style="font-size:17px;margin-bottom:6px">Add details (optional but helpful)</h3><p style="font-size:14px;color:var(--text-muted)">Any additional context helps us act faster and more accurately. Screenshots can be attached.</p></div>
+        </div>
+        <div class="step-card reveal reveal-delay-3" style="background:#E8F5E9;border-radius:var(--radius-lg);padding:28px 32px;border:1px solid #A5D6A7;display:grid;grid-template-columns:64px 1fr;gap:20px;align-items:start">
+          <div class="step-number" style="width:48px;height:48px;font-size:20px;flex-shrink:0;background:#2E7D32">✓</div>
+          <div><h3 style="font-size:17px;margin-bottom:6px;color:#1B5E20">We handle it from here</h3><p style="font-size:14px;color:#2E7D32">Your report is reviewed within 24 hours. Serious cases are escalated immediately. You'll receive a notification when action is taken.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EMERGENCY -->
+  <section class="section bg-cream">
+    <div class="container">
+      <div class="emergency-section reveal">
+        <h2>🚨 In an Emergency, Call Immediately</h2>
+        <p>CafeConnects is not an emergency service. If you're ever in danger, call emergency services directly. Do not wait to file an in-app report.</p>
+        <div class="emergency-contacts">
+          <div class="emergency-contact">
+            <div class="num">112</div>
+            <div class="label">National Emergency</div>
+          </div>
+          <div class="emergency-contact">
+            <div class="num">100</div>
+            <div class="label">Police</div>
+          </div>
+          <div class="emergency-contact">
+            <div class="num">1091</div>
+            <div class="label">Women's Helpline</div>
+          </div>
+          <div class="emergency-contact">
+            <div class="num" style="font-size:18px">safety@cafeconnects.in</div>
+            <div class="label">CafeConnects Safety Team</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer" id="contact">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand"><a href="index.html" class="logo"><div class="logo-icon"></div>CafeConnects</a><p class="footer-desc mt-16">Real people. Real cafés. Real conversations.</p><div class="footer-social mt-24"><a href="#" class="social-icon">📸</a><a href="#" class="social-icon">🐦</a><a href="#" class="social-icon">💼</a></div></div>
+        <div class="footer-col"><h4>Product</h4><ul class="footer-links"><li><a href="product.html" class="footer-link">How It Works</a></li><li><a href="safety.html" class="footer-link">Safety</a></li></ul></div>
+        <div class="footer-col"><h4>Company</h4><ul class="footer-links"><li><a href="blog.html" class="footer-link">Blog</a></li><li><a href="careers.html" class="footer-link">Careers</a></li></ul></div>
+        <div class="footer-col"><h4>Resources</h4><ul class="footer-links"><li><a href="bangalore-cafes.html" class="footer-link">Bangalore Cafes</a></li></ul></div>
+        <div class="footer-col"><h4>Legal</h4><ul class="footer-links"><li><a href="privacy-policy.html" class="footer-link">Privacy</a></li><li><a href="terms.html" class="footer-link">Terms</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><p class="footer-copyright">© 2026 CafeConnects. Built with ☕ in Bangalore.</p></div>
+    </div>
+  </footer>
+  <script src="shared.js"></script>
+</body>
+</html>

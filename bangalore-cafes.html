@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bangalore Cafés — CafeConnects</title>
+  <meta name="description" content="Discover the best cafés in Bangalore — curated spots for connection, work, community, and great coffee." />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .page-hero { background:var(--espresso); padding:160px 0 80px; position:relative; overflow:hidden; }
+    .page-hero-dots { position:absolute; inset:0; background-image:radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px); background-size:28px 28px; }
+
+    /* Filters */
+    .filters-bar { background:var(--white); padding:32px 0; border-bottom:1px solid rgba(215,204,200,0.5); position:sticky; top:72px; z-index:100; }
+    .filters-inner { display:flex; align-items:center; gap:16px; flex-wrap:wrap; justify-content:space-between; }
+    .filters-left { display:flex; gap:10px; flex-wrap:wrap; }
+    .filter-btn { padding:8px 18px; border-radius:var(--radius-full); font-size:13px; font-weight:600; cursor:pointer; background:var(--cream); color:var(--coffee); border:1.5px solid var(--latte); transition:all 0.2s; }
+    .filter-btn.active, .filter-btn:hover { background:var(--espresso); color:var(--white); border-color:var(--espresso); }
+    .search-wrap { position:relative; }
+    .search-wrap input { padding:10px 16px 10px 40px; border-radius:var(--radius-full); border:1.5px solid var(--latte); background:var(--cream); font-size:14px; color:var(--text-primary); width:240px; transition:all 0.2s; }
+    .search-wrap input:focus { border-color:var(--coffee); box-shadow:0 0 0 3px rgba(93,64,55,0.1); }
+    .search-icon { position:absolute; left:14px; top:50%; transform:translateY(-50%); font-size:14px; pointer-events:none; }
+
+    /* Café Grid */
+    .cafes-section { background:var(--cream); }
+    .cafes-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:28px; }
+
+    .cafe-card { background:var(--white); border-radius:var(--radius-xl); overflow:hidden; border:1px solid rgba(215,204,200,0.5); box-shadow:var(--shadow-sm); transition:all 0.3s var(--ease-smooth); }
+    .cafe-card:hover { box-shadow:var(--shadow-lg); transform:translateY(-6px); border-color:var(--rose); }
+
+    .cafe-image { height:200px; display:flex; align-items:center; justify-content:center; font-size:64px; position:relative; overflow:hidden; }
+    .cafe-image-overlay { position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,0.3), transparent); }
+    .cafe-image-badge { position:absolute; top:12px; right:12px; z-index:2; }
+
+    .cafe-body { padding:24px; }
+    .cafe-header { display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:12px; }
+    .cafe-name { font-size:18px; font-weight:700; color:var(--espresso); line-height:1.2; }
+    .cafe-rating { display:flex; align-items:center; gap:4px; font-size:14px; font-weight:700; color:var(--espresso); }
+    .cafe-address { font-size:13px; color:var(--text-muted); margin-bottom:12px; display:flex; align-items:center; gap:6px; }
+    .cafe-timings { font-size:12px; color:var(--text-muted); display:flex; align-items:center; gap:6px; margin-bottom:16px; }
+    .cafe-tags { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:16px; }
+    .cafe-tag { font-size:11px; font-weight:600; padding:4px 10px; border-radius:var(--radius-full); background:var(--cream); color:var(--coffee); border:1px solid var(--latte); }
+    .cafe-footer { display:flex; gap:10px; }
+    .cafe-map-btn { flex:1; padding:10px; background:var(--cream); border-radius:var(--radius-md); font-size:13px; font-weight:600; color:var(--espresso); text-align:center; border:1px solid var(--latte); cursor:pointer; transition:all 0.2s; }
+    .cafe-map-btn:hover { background:var(--espresso); color:var(--white); border-color:var(--espresso); }
+    .cafe-poke-btn { padding:10px 16px; background:var(--espresso); border-radius:var(--radius-md); font-size:13px; font-weight:700; color:var(--white); cursor:pointer; transition:all 0.2s; white-space:nowrap; }
+    .cafe-poke-btn:hover { background:var(--coffee); }
+
+    /* Map section */
+    .map-section { background:var(--white); }
+    .map-placeholder { background:linear-gradient(135deg, var(--cream), var(--rose)); border-radius:var(--radius-xl); height:400px; display:flex; flex-direction:column; align-items:center; justify-content:center; border:2px dashed var(--latte); text-align:center; padding:32px; }
+
+    @media (max-width:1024px) { .cafes-grid{grid-template-columns:repeat(2,1fr)} }
+    @media (max-width:768px) { .cafes-grid{grid-template-columns:1fr} .filters-inner{flex-direction:column;align-items:stretch} .search-wrap input{width:100%} }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar" id="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="logo"><div class="logo-icon"></div>CafeConnects</a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="product.html" class="nav-link">Product</a>
+        <a href="for-cafes.html" class="nav-link">For Cafes</a>
+        <a href="blog.html" class="nav-link">Blog</a>
+        <a href="bangalore-cafes.html" class="nav-link active">Bangalore Cafes</a>
+        <div class="nav-dropdown"><a href="#" class="nav-link">More ▾</a>
+          <div class="nav-dropdown-menu">
+            <a href="careers.html" class="nav-dropdown-item">Careers</a>
+            <a href="collaborations.html" class="nav-dropdown-item">Collaborations</a>
+            <a href="safety.html" class="nav-dropdown-item">Safety</a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-cta">
+        <a href="for-cafes.html" class="btn-nav">List Your Café</a>
+        <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobile-menu">
+    <button class="mobile-close" id="mobile-close">✕</button>
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="product.html" class="nav-link">Product</a>
+    <a href="for-cafes.html" class="nav-link">For Cafes</a>
+    <a href="blog.html" class="nav-link">Blog</a>
+    <a href="bangalore-cafes.html" class="nav-link active">Bangalore Cafes</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="page-hero-dots"></div>
+    <div class="container">
+      <div style="position:relative;z-index:2">
+        <div class="eyebrow reveal" style="background:rgba(255,255,255,0.12);color:rgba(255,255,255,0.8)"><span class="eyebrow-dot" style="background:#fff"></span>Bangalore's Best Cafés</div>
+        <h1 class="display-lg reveal" style="color:var(--white)">Discover Where <br/>Connections Begin.</h1>
+        <p class="body-lg reveal reveal-delay-1" style="color:rgba(255,255,255,0.6);max-width:560px">A curated guide to Bangalore's finest cafés — sorted by community vibe, work-friendliness, and connection potential.</p>
+        <div class="flex gap-24 mt-32 reveal reveal-delay-2" style="flex-wrap:wrap">
+          <div class="stat-card" style="background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.15);padding:20px 28px;min-width:120px">
+            <div style="font-family:var(--font-display);font-size:32px;font-weight:800;color:var(--white)">120+</div>
+            <div style="font-size:13px;color:rgba(255,255,255,0.55);margin-top:4px">Partner Cafés</div>
+          </div>
+          <div class="stat-card" style="background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.15);padding:20px 28px;min-width:120px">
+            <div style="font-family:var(--font-display);font-size:32px;font-weight:800;color:var(--white)">8</div>
+            <div style="font-size:13px;color:rgba(255,255,255,0.55);margin-top:4px">Neighbourhoods</div>
+          </div>
+          <div class="stat-card" style="background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.15);padding:20px 28px;min-width:120px">
+            <div style="font-family:var(--font-display);font-size:32px;font-weight:800;color:var(--white)">4.6★</div>
+            <div style="font-size:13px;color:rgba(255,255,255,0.55);margin-top:4px">Avg Rating</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FILTERS -->
+  <div class="filters-bar">
+    <div class="container">
+      <div class="filters-inner">
+        <div class="filters-left">
+          <button class="filter-btn active" data-filter="all">All Cafés</button>
+          <button class="filter-btn" data-filter="coffee">Specialty Coffee</button>
+          <button class="filter-btn" data-filter="work">Work Friendly</button>
+          <button class="filter-btn" data-filter="community">Community Space</button>
+          <button class="filter-btn" data-filter="cozy">Cozy Corners</button>
+        </div>
+        <div class="search-wrap">
+          <span class="search-icon">🔍</span>
+          <input type="text" placeholder="Search cafés or areas…" id="cafe-search" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CAFES GRID -->
+  <section class="cafes-section section">
+    <div class="container">
+      <div class="cafes-grid" id="cafes-grid">
+
+        <!-- Café 1 -->
+        <div class="cafe-card reveal" data-category="coffee work">
+          <div class="cafe-image" style="background:linear-gradient(135deg,#3E2723,#5D4037)">
+            ☕
+            <div class="cafe-image-overlay"></div>
+            <div class="cafe-image-badge"><span class="badge badge-green">✓ Partner</span></div>
+          </div>
+          <div class="cafe-body">
+            <div class="cafe-header">
+              <div class="cafe-name">Blue Tokai Coffee Roasters</div>
+              <div class="cafe-rating">⭐ 4.8</div>
+            </div>
+            <div class="cafe-address">📍 100 Feet Road, Indiranagar</div>
+            <div class="cafe-timings">🕗 7:30am – 9:00pm · Open Today</div>
+            <div class="cafe-tags">
+              <span class="cafe-tag">☕ Specialty Coffee</span>
+              <span class="cafe-tag">💻 Work Friendly</span>
+              <span class="cafe-tag">🌱 Community</span>
+            </div>
+            <div class="cafe-footer">
+              <button class="cafe-map-btn">📍 View Map</button>
+              <button class="cafe-poke-btn">Poke Here 👋</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Café 2 -->
+        <div class="cafe-card reveal reveal-delay-1" data-category="work community">
+          <div class="cafe-image" style="background:linear-gradient(135deg,#4E342E,#795548)">
+            🎨
+            <div class="cafe-image-overlay"></div>
+            <div class="cafe-image-badge"><span class="badge badge-rose">⭐ Premium</span></div>
+          </div>
+          <div class="cafe-body">
+            <div class="cafe-header">
+              <div class="cafe-name">Third Wave Coffee</div>
+              <div class="cafe-rating">⭐ 4.7</div>
+            </div>
+            <div class="cafe-address">📍 12th Main, Koramangala</div>
+            <div class="cafe-timings">🕗 8:00am – 10:00pm · Open Today</div>
+            <div class="cafe-tags">
+              <span class="cafe-tag">💻 Work Friendly</span>
+              <span class="cafe-tag">🌱 Community Space</span>
+              <span class="cafe-tag">📚 Quiet</span>
+            </div>
+            <div class="cafe-footer">
+              <button class="cafe-map-btn">📍 View Map</button>
+              <button class="cafe-poke-btn">Poke Here 👋</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Café 3 -->
+        <div class="cafe-card reveal reveal-delay-2" data-category="coffee cozy">
+          <div class="cafe-image" style="background:linear-gradient(135deg,#8D4E2D,#BF6F3E)">
+            🌿
+            <div class="cafe-image-overlay"></div>
+            <div class="cafe-image-badge"><span class="badge badge-green">✓ Partner</span></div>
+          </div>
+          <div class="cafe-body">
+            <div class="cafe-header">
+              <div class="cafe-name">Matteo Coffee</div>
+              <div class="cafe-rating">⭐ 4.6</div>
+            </div>
+            <div class="cafe-address">📍 Church Street, MG Road Area</div>
+            <div class="cafe-timings">🕗 9:00am – 9:30pm · Open Today</div>
+            <div class="cafe-tags">
+              <span class="cafe-tag">☕ Specialty Coffee</span>
+              <span class="cafe-tag">🌿 Cozy</span>
+              <span class="cafe-tag">🎵 Great Vibes</span>
+            </div>
+            <div class="cafe-footer">
+              <button class="cafe-map-btn">📍 View Map</button>
+              <button class="cafe-poke-btn">Poke Here 👋</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Café 4 -->
+        <div class="cafe-card reveal" data-category="community work">
+          <div class="cafe-image" style="background:linear-gradient(135deg,#1A0F0A,#3E2723)">
+            🏡
+            <div class="cafe-image-overlay"></div>
+            <div class="cafe-image-badge"><span class="badge badge-rose">⭐ Premium</span></div>
+          </div>
+          <div class="cafe-body">
+            <div class="cafe-header">
+              <div class="cafe-name">Kaffa Cerrado</div>
+              <div class="cafe-rating">⭐ 4.9</div>
+            </div>
+            <div class="cafe-address">📍 3rd Block, Jayanagar</div>
+            <div class="cafe-timings">🕗 7:00am – 8:00pm · Open Today</div>
+            <div class="cafe-tags">
+              <span class="cafe-tag">☕ Specialty Coffee</span>
+              <span class="cafe-tag">🌱 Community</span>
+              <span class="cafe-tag">🏡 Cozy</span>
+            </div>
+            <div class="cafe-footer">
+              <button class="cafe-map-btn">📍 View Map</button>
+              <button class="cafe-poke-btn">Poke Here 👋</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Café 5 -->
+        <div class="cafe-card reveal reveal-delay-1" data-category="coffee work">
+          <div class="cafe-image" style="background:linear-gradient(135deg,#5D4037,#8D6E63)">
+            🔬
+            <div class="cafe-image-overlay"></div>
+            <div class="cafe-image-badge"><span class="badge badge-green">✓ Partner</span></div>
+          </div>
+          <div class="cafe-body">
+            <div class="cafe-header">
+              <div class="cafe-name">Corridor Seven</div>
+              <div class="cafe-rating">⭐ 4.7</div>
+            </div>
+            <div class="cafe-address">📍 Lavelle Road, Ashok Nagar</div>
+            <div class="cafe-timings">🕗 8:30am – 9:00pm · Open Today</div>
+            <div class="cafe-tags">
+              <span class="cafe-tag">☕ Specialty Coffee</span>
+              <span class="cafe-tag">💻 Work Friendly</span>
+              <span class="cafe-tag">🎨 Creative</span>
+            </div>
+            <div class="cafe-footer">
+              <button class="cafe-map-btn">📍 View Map</button>
+              <button class="cafe-poke-btn">Poke Here 👋</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Café 6 -->
+        <div class="cafe-card reveal reveal-delay-2" data-category="community cozy">
+          <div class="cafe-image" style="background:linear-gradient(135deg,#A1887F,#D7CCC8)">
+            🎪
+            <div class="cafe-image-overlay"></div>
+            <div class="cafe-image-badge"><span class="badge badge-green">✓ Partner</span></div>
+          </div>
+          <div class="cafe-body">
+            <div class="cafe-header">
+              <div class="cafe-name">Stir Coffee</div>
+              <div class="cafe-rating">⭐ 4.5</div>
+            </div>
+            <div class="cafe-address">📍 HSR Layout, Sector 2</div>
+            <div class="cafe-timings">🕗 8:00am – 10:00pm · Open Today</div>
+            <div class="cafe-tags">
+              <span class="cafe-tag">🌱 Community Space</span>
+              <span class="cafe-tag">🎪 Events</span>
+              <span class="cafe-tag">🤝 Social</span>
+            </div>
+            <div class="cafe-footer">
+              <button class="cafe-map-btn">📍 View Map</button>
+              <button class="cafe-poke-btn">Poke Here 👋</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="text-center mt-48 reveal">
+        <p style="color:var(--text-muted);margin-bottom:16px">Showing 6 of 120+ partner cafés in Bangalore</p>
+        <button class="btn btn-secondary">Load More Cafés</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAP SECTION -->
+  <section class="map-section section">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="eyebrow"><span class="eyebrow-dot"></span>Explore the Map</div>
+        <h2 class="display-sm">Find Cafés Near You</h2>
+      </div>
+      <div class="map-placeholder reveal">
+        <div style="font-size:64px;margin-bottom:16px">🗺️</div>
+        <h3 style="color:var(--espresso);margin-bottom:8px">Interactive Map Coming Soon</h3>
+        <p style="color:var(--text-muted);max-width:400px">Our full interactive map with real-time café activity will launch with the app. Download CafeConnects to explore all 120+ locations.</p>
+        <a href="index.html#download" class="btn btn-primary mt-24">Download the App →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" id="contact">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand"><a href="index.html" class="logo"><div class="logo-icon"></div>CafeConnects</a><p class="footer-desc mt-16">Real people. Real cafés. Real conversations.</p><div class="footer-social mt-24"><a href="#" class="social-icon">📸</a><a href="#" class="social-icon">🐦</a><a href="#" class="social-icon">💼</a></div></div>
+        <div class="footer-col"><h4>Product</h4><ul class="footer-links"><li><a href="product.html" class="footer-link">How It Works</a></li><li><a href="safety.html" class="footer-link">Safety</a></li></ul></div>
+        <div class="footer-col"><h4>Company</h4><ul class="footer-links"><li><a href="blog.html" class="footer-link">Blog</a></li><li><a href="careers.html" class="footer-link">Careers</a></li></ul></div>
+        <div class="footer-col"><h4>Resources</h4><ul class="footer-links"><li><a href="bangalore-cafes.html" class="footer-link">Bangalore Cafes</a></li></ul></div>
+        <div class="footer-col"><h4>Legal</h4><ul class="footer-links"><li><a href="privacy-policy.html" class="footer-link">Privacy</a></li><li><a href="terms.html" class="footer-link">Terms</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><p class="footer-copyright">© 2026 CafeConnects. Built with ☕ in Bangalore.</p></div>
+    </div>
+  </footer>
+
+  <script src="shared.js"></script>
+  <script>
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        document.querySelectorAll('.cafe-card').forEach(card => {
+          if (filter === 'all' || card.dataset.category?.includes(filter)) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    document.getElementById('cafe-search')?.addEventListener('input', function() {
+      const q = this.value.toLowerCase();
+      document.querySelectorAll('.cafe-card').forEach(card => {
+        const text = card.textContent.toLowerCase();
+        card.style.display = text.includes(q) ? '' : 'none';
+      });
+    });
+  </script>
+</body>
+</html>

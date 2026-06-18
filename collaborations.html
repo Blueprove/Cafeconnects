@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Collaborations — CafeConnects</title>
+  <meta name="description" content="Partner with CafeConnects — for influencers, brands, communities, and media." />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .page-hero { background:var(--cream); padding:160px 0 100px; position:relative; overflow:hidden; }
+    .page-hero-bg { position:absolute; inset:0; background:radial-gradient(ellipse 70% 60% at 80% 50%, rgba(247,216,216,0.5) 0%, transparent 60%); }
+    .page-hero-dots { position:absolute; inset:0; background-image:radial-gradient(circle, rgba(93,64,55,0.05) 1px, transparent 1px); background-size:28px 28px; }
+    .collab-types { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+    .collab-card { background:var(--white); border-radius:var(--radius-xl); padding:40px 32px; border:1px solid rgba(215,204,200,0.5); box-shadow:var(--shadow-sm); transition:all 0.3s var(--ease-smooth); }
+    .collab-card:hover { box-shadow:var(--shadow-lg); transform:translateY(-6px); border-color:var(--rose); }
+    .collab-icon { font-size:44px; margin-bottom:20px; }
+    .collab-card h3 { font-size:20px; font-weight:700; color:var(--espresso); margin-bottom:10px; }
+    .collab-card p  { font-size:14px; color:var(--text-muted); line-height:1.65; margin-bottom:16px; }
+    .collab-perks { list-style:none; display:flex; flex-direction:column; gap:6px; }
+    .collab-perks li { font-size:13px; color:var(--text-secondary); display:flex; align-items:center; gap:8px; }
+    .collab-perks li::before { content:'✓'; color:#2E7D32; font-weight:700; }
+    .form-card { background:var(--white); border-radius:var(--radius-xl); padding:64px; box-shadow:var(--shadow-lg); max-width:680px; margin:0 auto; border:1px solid rgba(215,204,200,0.5); }
+    @media(max-width:1024px) { .collab-types{grid-template-columns:repeat(2,1fr)} }
+    @media(max-width:768px) { .collab-types{grid-template-columns:1fr} .form-card{padding:32px 24px} }
+  </style>
+</head>
+<body>
+  <nav class="navbar" id="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="logo"><div class="logo-icon"></div>CafeConnects</a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="product.html" class="nav-link">Product</a>
+        <a href="for-cafes.html" class="nav-link">For Cafes</a>
+        <a href="blog.html" class="nav-link">Blog</a>
+        <a href="bangalore-cafes.html" class="nav-link">Bangalore Cafes</a>
+        <div class="nav-dropdown"><a href="#" class="nav-link">More ▾</a>
+          <div class="nav-dropdown-menu">
+            <a href="careers.html" class="nav-dropdown-item">Careers</a>
+            <a href="collaborations.html" class="nav-dropdown-item active">Collaborations</a>
+            <a href="safety.html" class="nav-dropdown-item">Safety</a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-cta">
+        <a href="#collab-form" class="btn-nav">Get In Touch</a>
+        <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobile-menu">
+    <button class="mobile-close" id="mobile-close">✕</button>
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="collaborations.html" class="nav-link active">Collaborations</a>
+    <a href="#collab-form" class="btn btn-primary mt-24">Get In Touch</a>
+  </div>
+
+  <section class="page-hero">
+    <div class="page-hero-bg"></div><div class="page-hero-dots"></div>
+    <div class="container">
+      <div style="position:relative;z-index:2;max-width:680px">
+        <div class="eyebrow reveal"><span class="eyebrow-dot"></span>Work With Us</div>
+        <h1 class="display-lg reveal" style="color:var(--espresso)">Let's Build Something Meaningful Together.</h1>
+        <p class="body-lg reveal reveal-delay-1" style="color:var(--text-muted)">We partner with creators, brands, communities, and institutions who share our belief that real-world human connection is worth fighting for.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-white">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="eyebrow"><span class="eyebrow-dot"></span>Partnership Types</div>
+        <h2 class="display-sm">Who We Partner With</h2>
+      </div>
+      <div class="collab-types">
+        <div class="collab-card reveal">
+          <div class="collab-icon">📸</div>
+          <h3>Influencers & Creators</h3>
+          <p>You create content about real life, travel, food, coffee, or community. We help you take your audience somewhere real — literally.</p>
+          <ul class="collab-perks">
+            <li>Co-branded Poke Night experiences</li>
+            <li>Early access to platform features</li>
+            <li>Revenue sharing on referred café sign-ups</li>
+            <li>Featured in our weekly newsletter</li>
+          </ul>
+        </div>
+        <div class="collab-card reveal reveal-delay-1">
+          <div class="collab-icon">☕</div>
+          <h3>Coffee Brands</h3>
+          <p>Your beans deserve to be savoured during real, meaningful conversations — not alone in front of a phone screen. Let's make that happen.</p>
+          <ul class="collab-perks">
+            <li>In-app brand placement at partner cafés</li>
+            <li>Co-hosted brand events</li>
+            <li>Featured in café discovery section</li>
+            <li>Social media co-marketing</li>
+          </ul>
+        </div>
+        <div class="collab-card reveal reveal-delay-2">
+          <div class="collab-icon">🏫</div>
+          <h3>Communities & Clubs</h3>
+          <p>Book clubs, startup networks, design collectives, sports groups — we help you find new members in real physical spaces.</p>
+          <ul class="collab-perks">
+            <li>Custom interest filter for your community</li>
+            <li>Dedicated "Poke Night" events for your group</li>
+            <li>Partnership listing in our app</li>
+            <li>QR code campaigns to grow membership</li>
+          </ul>
+        </div>
+        <div class="collab-card reveal">
+          <div class="collab-icon">🎪</div>
+          <h3>Events & Experiences</h3>
+          <p>Conferences, pop-ups, art shows, open mics — we can make your events social discovery opportunities for people who share passions.</p>
+          <ul class="collab-perks">
+            <li>Geo-fenced matching at your event</li>
+            <li>Special event mode in-app</li>
+            <li>Co-promotion to our Bangalore user base</li>
+            <li>Post-event connection facilitation</li>
+          </ul>
+        </div>
+        <div class="collab-card reveal reveal-delay-1">
+          <div class="collab-icon">🎓</div>
+          <h3>Universities & Colleges</h3>
+          <p>Fresh out of college and new to Bangalore? We help students build real social networks, not just follower counts.</p>
+          <ul class="collab-perks">
+            <li>Campus activation programmes</li>
+            <li>Student ambassador network</li>
+            <li>Events partnership with student bodies</li>
+            <li>Co-branded orientation experiences</li>
+          </ul>
+        </div>
+        <div class="collab-card reveal reveal-delay-2">
+          <div class="collab-icon">📰</div>
+          <h3>Media & Press</h3>
+          <p>Writing about loneliness, social tech, Bangalore's startup scene, or café culture? We'd love to tell you our story.</p>
+          <ul class="collab-perks">
+            <li>Press kit and data room access</li>
+            <li>Founder interviews on request</li>
+            <li>Exclusive access to user stories</li>
+            <li>Product demos and platform access</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-cream" id="collab-form">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="eyebrow"><span class="eyebrow-dot"></span>Start a Conversation</div>
+        <h2 class="display-sm">Reach Out to Us</h2>
+        <p>Tell us who you are and what you have in mind. We'll get back within 48 hours.</p>
+      </div>
+      <div class="form-card reveal">
+        <form data-form="collaboration" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="f829e437-bf4c-4989-a103-a09cf7e86753" />
+          <input type="hidden" name="subject" value="New Collaboration Enquiry — CafeConnects" />
+          <input type="hidden" name="from_name" value="CafeConnects Website" />
+          <input type="hidden" name="redirect" value="false" />
+          <input type="checkbox" name="botcheck" style="display:none" />
+          <div class="form-group">
+            <label class="form-label">Your Email *</label>
+            <input type="email" name="email" class="form-input" placeholder="you@yourdomain.com" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Phone Number</label>
+            <input type="tel" name="phone" class="form-input" placeholder="+91 98765 43210 (optional)" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Type of Collaboration *</label>
+            <select name="collaboration_type" class="form-select form-input" required>
+              <option value="">Select collaboration type</option>
+              <option>Influencer / Creator</option>
+              <option>Coffee Brand</option>
+              <option>Community / Club</option>
+              <option>Events & Experiences</option>
+              <option>University / College</option>
+              <option>Media & Press</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Tell Us About Yourself & Your Idea *</label>
+            <textarea name="message" class="form-textarea" placeholder="Who are you, what do you do, and what kind of collaboration did you have in mind? The more context you give us, the better we can respond." required style="min-height:160px;"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg w-full">Send Message →</button>
+          <p style="font-size:12px;color:var(--text-muted);text-align:center;margin-top:12px">Or email us directly at <a href="mailto:partnerships@cafeconnects.in" style="color:var(--coffee)">partnerships@cafeconnects.in</a></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer" id="contact">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand"><a href="index.html" class="logo"><div class="logo-icon"></div>CafeConnects</a><p class="footer-desc mt-16">Real people. Real cafés. Real conversations.</p><div class="footer-social mt-24"><a href="#" class="social-icon">📸</a><a href="#" class="social-icon">🐦</a><a href="#" class="social-icon">💼</a></div></div>
+        <div class="footer-col"><h4>Product</h4><ul class="footer-links"><li><a href="product.html" class="footer-link">How It Works</a></li><li><a href="safety.html" class="footer-link">Safety</a></li></ul></div>
+        <div class="footer-col"><h4>Company</h4><ul class="footer-links"><li><a href="blog.html" class="footer-link">Blog</a></li><li><a href="careers.html" class="footer-link">Careers</a></li></ul></div>
+        <div class="footer-col"><h4>Resources</h4><ul class="footer-links"><li><a href="bangalore-cafes.html" class="footer-link">Bangalore Cafes</a></li></ul></div>
+        <div class="footer-col"><h4>Legal</h4><ul class="footer-links"><li><a href="privacy-policy.html" class="footer-link">Privacy</a></li><li><a href="terms.html" class="footer-link">Terms</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><p class="footer-copyright">© 2026 CafeConnects. Built with ☕ in Bangalore.</p></div>
+    </div>
+  </footer>
+  <script src="shared.js"></script>
+</body>
+</html>
