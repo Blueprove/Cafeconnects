@@ -370,6 +370,27 @@
       document.querySelectorAll('.job-card').forEach(c => c.classList.remove('open'));
       if (!isOpen) card.classList.add('open');
     }
+
+    // Pre-select role when clicking "Apply for This Role" from a job card
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('a[href="#apply"]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const card = btn.closest('.job-card');
+          if (!card) return;
+          const titleEl = card.querySelector('.job-title');
+          if (!titleEl) return;
+          const roleText = titleEl.textContent.trim();
+          const select = document.querySelector('select[name="role"]');
+          if (!select) return;
+          for (const opt of select.options) {
+            if (opt.value && roleText.includes(opt.value.split('—')[0].trim())) {
+              select.value = opt.value;
+              break;
+            }
+          }
+        });
+      });
+    });
   </script>
 </body>
 </html>

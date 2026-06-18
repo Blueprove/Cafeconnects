@@ -207,6 +207,16 @@ function initForms() {
       const btn      = form.querySelector('[type="submit"]');
       const original = btn.textContent;
 
+      // Dynamically update subject for job applications to include role
+      if (type === 'job-application') {
+        const roleEl = form.querySelector('[name="role"]');
+        const nameEl = form.querySelector('[name="full_name"]');
+        const subjectEl = form.querySelector('[name="subject"]');
+        if (subjectEl && roleEl && roleEl.value) {
+          subjectEl.value = `Job Application — ${roleEl.value} — CafeConnects`;
+        }
+      }
+
       btn.textContent = 'Sending…';
       btn.disabled    = true;
 
