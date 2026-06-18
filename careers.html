@@ -295,7 +295,7 @@
         <p>Tell us who you are. We read every single application personally.</p>
       </div>
       <div class="apply-card reveal">
-        <form data-form="job-application" action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data">
+        <form data-form="job-application" action="https://api.web3forms.com/submit" method="POST">
           <input type="hidden" name="access_key" value="f829e437-bf4c-4989-a103-a09cf7e86753" />
           <input type="hidden" name="subject" value="Job Application — CafeConnects" />
           <input type="hidden" name="from_name" value="CafeConnects Website" />
@@ -326,8 +326,8 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="form-label">Upload Resume * <span style="font-size:11px;color:var(--text-muted)">(PDF or DOCX, max 5MB)</span></label>
-            <input type="file" name="resume" class="form-input" accept=".pdf,.doc,.docx" required style="padding:10px" />
+            <label class="form-label">Resume Link * <span style="font-size:11px;color:var(--text-muted)">(Google Drive, Dropbox, or any shareable link)</span></label>
+            <input type="url" name="resume_link" class="form-input" placeholder="https://drive.google.com/file/d/..." required />
           </div>
           <div class="form-group">
             <label class="form-label">LinkedIn Profile <span style="font-size:11px;color:var(--text-muted)">(optional)</span></label>
